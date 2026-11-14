@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell, Kicker } from "@/components/site/chrome";
+import { Film } from "@/components/site/films";
 
 export const Route = createFileRoute("/expertise")({
   head: () => ({
@@ -130,6 +131,9 @@ function Expertise() {
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
             Strategy, organizational design, process optimization, economics, data architecture, AI agents, and cybersecurity belong to the same transformation. EXIOR combines these disciplines into a coherent enterprise blueprint.
           </p>
+          <div className="mt-10 max-w-4xl">
+            <Film name="layers" />
+          </div>
         </section>
         <section className="border-t border-line">
           <div className="mx-auto max-w-6xl divide-y divide-line px-5">

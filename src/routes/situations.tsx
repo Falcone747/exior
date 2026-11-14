@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell, Kicker } from "@/components/site/chrome";
+import { Film } from "@/components/site/films";
 
 export const Route = createFileRoute("/situations")({
   head: () => ({
@@ -129,6 +130,9 @@ function SituationsPage() {
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
             Every industry has its own processes, constraints, operating rhythms, and sources of value. EXIOR identifies where your business can improve coordination, reduce operational friction, and introduce intelligent capabilities.
           </p>
+          <div className="mt-10 max-w-4xl">
+            <Film name="chain" />
+          </div>
           <Link to="/offre" className="mt-8 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
             Explore Use Cases
           </Link>

@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell, Kicker } from "@/components/site/chrome";
+import { Film } from "@/components/site/films";
 
 export const Route = createFileRoute("/methode")({
   head: () => ({
@@ -87,6 +88,9 @@ function Methode() {
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
             EXIOR follows a structured methodology connecting business analysis, organizational design, technology architecture, AI opportunities, and transformation planning. Your complete business dossier starts the 14-day delivery period.
           </p>
+          <div className="mt-10 max-w-4xl">
+            <Film name="roadmap" />
+          </div>
         </section>
         <section className="border-t border-line">
           <div className="mx-auto max-w-6xl divide-y divide-line px-5">

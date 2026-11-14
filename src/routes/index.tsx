@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
 import { Shell } from "@/components/site/chrome";
+import { Film, type FilmName } from "@/components/site/films";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,6 +35,7 @@ const PILLARS = [
     text: "EXIOR maps your current organization, operating processes, business systems, information flows, and critical dependencies. It identifies where performance is constrained, where decisions are delayed, where systems are disconnected, and where transformation creates the greatest strategic value.",
     href: "/expertise",
     cta: "Explore Enterprise Analysis",
+    film: "chain" as FilmName,
     points: [
       "End-to-end value chain mapping",
       "Organizational structure and decision flows",
@@ -48,6 +50,7 @@ const PILLARS = [
     text: "EXIOR brings every layer of your business into a coherent target architecture — from organizational responsibilities to digital infrastructure and AI capabilities. Every function, system, process, and agent has a defined role within the wider enterprise.",
     href: "/expertise",
     cta: "Explore Enterprise Architecture",
+    film: "layers" as FilmName,
     points: [
       "Target organizational structure",
       "Redesigned operational processes",
@@ -62,6 +65,7 @@ const PILLARS = [
     text: "EXIOR translates your future architecture into a prioritized transformation plan. Know what to build, what to connect, what to retain, and what needs to happen first.",
     href: "/methode",
     cta: "Explore the Transformation Roadmap",
+    film: "roadmap" as FilmName,
     points: [
       "Transformation initiatives prioritized by value, risk, and dependency",
       "Clear implementation stages",
@@ -76,6 +80,7 @@ const PILLARS = [
     text: "AI models improve. Technologies change. Business requirements shift. Your architecture brings these moving parts together through modular structures, explicit interfaces, and reusable capabilities. Add new technologies and capabilities without redesigning your entire organization around each new tool.",
     href: "/expertise",
     cta: "Discover Adaptive Architecture",
+    film: "map" as FilmName,
     points: [
       "Modular organizational and digital design",
       "Extensible integrations",
@@ -227,6 +232,9 @@ function Home() {
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
               EXIOR brings the disciplines behind enterprise transformation into a single, coordinated plan. From organizational design to AI agents, every component is connected to the way your business creates value.
             </p>
+            <div className="mt-10">
+              <Film name="map" />
+            </div>
           </div>
         </section>
 
@@ -242,7 +250,8 @@ function Home() {
                 </Link>
               </Reveal>
               <Reveal delay={0.06}>
-                <ul className="divide-y divide-line rounded-2xl border border-line">
+                <Film name={pillar.film} />
+                <ul className="mt-4 divide-y divide-line rounded-2xl border border-line">
                   {pillar.points.map((point) => (
                     <li key={point} className="px-5 py-4 text-sm leading-relaxed">
                       {point}
@@ -265,6 +274,9 @@ function Home() {
                 Explore your target architecture, review transformation priorities, understand dependencies, and keep critical decisions visible. Your EXIOR Space brings the complete blueprint together in a structured digital environment.
               </p>
             </Reveal>
+            <div className="mt-10">
+              <Film name="space" />
+            </div>
             <div className="mt-12 grid gap-4 md:grid-cols-2">
               {SPACE.map((item, i) => (
                 <Reveal key={item.title} delay={i * 0.05}>
@@ -328,8 +340,9 @@ function Home() {
                 One connected value chain. Information dependencies become explicit, responsibilities are defined, and selected activities are structured for automation.
               </p>
             </div>
-            <div className="rounded-2xl border border-line p-6">
-              <h3 className="text-lg font-medium">Agent governance</h3>
+            <div>
+              <Film name="agent" />
+              <h3 className="mt-8 text-lg font-medium">Agent governance</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 Intelligent execution. Defined boundaries. An agent can be authorized to retrieve an order status without being authorized to change a commercial price. A document-processing agent can prepare a file for review without making the final approval decision.
               </p>

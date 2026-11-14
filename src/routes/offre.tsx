@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { Shell, Kicker } from "@/components/site/chrome";
 import { FaqList } from "@/components/site/ui";
+import { Film } from "@/components/site/films";
 
 export const Route = createFileRoute("/offre")({
   head: () => ({
@@ -169,6 +170,9 @@ function Offre() {
           <a href="#profile" className="mt-6 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
             Get Your Transformation Plan
           </a>
+          <div className="mt-10 max-w-4xl">
+            <Film name="roadmap" />
+          </div>
         </section>
 
         <section className="border-t border-line">
