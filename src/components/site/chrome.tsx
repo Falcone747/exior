@@ -3,12 +3,35 @@ import { Menu, X } from "lucide-react";
 import { useState, type ReactNode } from "react";
 
 const NAV = [
-  { to: "/", label: "Accueil" },
+  { to: "/", label: "Transformation" },
   { to: "/expertise", label: "Expertise" },
-  { to: "/situations", label: "Situations" },
-  { to: "/methode", label: "Méthode" },
-  { to: "/sources", label: "Sources" },
-  { to: "/offre", label: "Offre" },
+  { to: "/situations", label: "Use Cases" },
+  { to: "/methode", label: "How It Works" },
+  { to: "/sources", label: "Resources" },
+] as const;
+
+const EXPLORE = [
+  { to: "/", label: "Enterprise Transformation" },
+  { to: "/expertise", label: "Organizational Architecture" },
+  { to: "/expertise", label: "Process Intelligence" },
+  { to: "/expertise", label: "Digital Architecture" },
+  { to: "/expertise", label: "AI Agents" },
+  { to: "/expertise", label: "Security & Governance" },
+] as const;
+
+const COMPANY = [
+  { to: "/expertise", label: "Our Expertise" },
+  { to: "/methode", label: "Our Method" },
+  { to: "/offre", label: "Transformation Plan" },
+  { to: "/", label: "EXIOR Space", hash: "espace" },
+  { to: "/offre", label: "Contact" },
+] as const;
+
+const RESOURCES = [
+  { to: "/sources", label: "Research & Sources" },
+  { to: "/situations", label: "Business Use Cases" },
+  { to: "/sources", label: "Enterprise Architecture" },
+  { to: "/offre", label: "Frequently Asked Questions" },
 ] as const;
 
 export function SiteHeader() {
@@ -17,23 +40,19 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-        <Link to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
+        <Link to="/" className="flex shrink-0 items-center gap-2.5" onClick={() => setOpen(false)}>
           <img src="/visuals/logo.jpg" alt="" className="size-10 object-contain" />
           <span className="text-lg font-semibold tracking-tight">EXIOR</span>
         </Link>
-        <nav className="hidden items-center gap-5 lg:flex">
+        <nav className="hidden items-center gap-4 xl:flex">
           {NAV.map((item) => {
             const active = path === item.to;
             return (
               <Link
                 key={item.to}
                 to={item.to}
-                className={
-                  active
-                    ? "text-sm text-fg"
-                    : "text-sm text-muted transition-colors hover:text-fg"
-                }
+                className={active ? "text-sm text-fg" : "text-sm text-muted transition-colors hover:text-fg"}
               >
                 {item.label}
               </Link>
@@ -45,13 +64,13 @@ export function SiteHeader() {
             to="/offre"
             className="hidden rounded-full bg-accent-fill px-4 py-2 text-sm font-medium text-accent-ink lg:inline-flex"
           >
-            Démarrer — 499 $
+            Get Started — $499
           </Link>
           <button
             type="button"
-            className="grid size-11 place-items-center rounded-full border border-line lg:hidden"
+            className="grid size-11 place-items-center rounded-full border border-line xl:hidden"
             aria-expanded={open}
-            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-label={open ? "Close Menu" : "Open Menu"}
             onClick={() => setOpen((v) => !v)}
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -59,7 +78,7 @@ export function SiteHeader() {
         </div>
       </div>
       {open ? (
-        <div className="border-t border-line bg-bg px-5 py-4 lg:hidden">
+        <div className="border-t border-line bg-bg px-5 py-4 xl:hidden">
           <div className="flex flex-col">
             {NAV.map((item) => (
               <Link
@@ -76,7 +95,7 @@ export function SiteHeader() {
               className="mt-4 inline-flex justify-center rounded-full bg-accent-fill px-4 py-3 text-sm font-medium text-accent-ink"
               onClick={() => setOpen(false)}
             >
-              Démarrer — 499 $
+              Get Started — $499
             </Link>
           </div>
         </div>
@@ -85,39 +104,62 @@ export function SiteHeader() {
   );
 }
 
+function Column({
+  title,
+  items,
+}: {
+  title: string;
+  items: readonly { to: string; label: string; hash?: string }[];
+}) {
+  return (
+    <div>
+      <p className="text-xs uppercase tracking-widest text-faint">{title}</p>
+      <div className="mt-4 flex flex-col gap-2 text-sm">
+        {items.map((item) => (
+          <Link key={item.label} to={item.to} hash={"hash" in item ? item.hash : undefined} className="text-muted hover:text-fg">
+            {item.label}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-line">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-4">
-        <div className="md:col-span-2">
-          <p className="text-lg font-semibold">EXIOR</p>
+      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-12">
+        <div className="md:col-span-4">
+          <p className="text-lg font-semibold">EXIOR — Transform Your Enterprise.</p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
-            Conception du plan de transformation : organisation, processus, données,
-            technologies et intelligence artificielle. Vous gardez la direction.
-            EXIOR fournit l’architecture et l’ordre d’exécution.
+            Enterprise transformation architecture connecting strategy, organization, operations, data, technology, and AI.
           </p>
         </div>
-        <div>
-          <p className="text-xs uppercase tracking-widest text-faint">Pages</p>
-          <div className="mt-4 flex flex-col gap-2 text-sm">
-            {NAV.map((item) => (
-              <Link key={item.to} to={item.to} className="text-muted hover:text-fg">
-                {item.label}
-              </Link>
-            ))}
-          </div>
+        <div className="md:col-span-3">
+          <Column title="Explore" items={EXPLORE} />
         </div>
-        <div>
-          <p className="text-xs uppercase tracking-widest text-faint">Offre</p>
-          <p className="mt-4 text-sm text-muted">Plan de transformation</p>
-          <p className="mt-1 text-2xl font-semibold">499 $</p>
-          <p className="mt-1 text-sm text-muted">Paiement unique · 14 jours</p>
+        <div className="md:col-span-2">
+          <Column title="Company" items={COMPANY} />
+        </div>
+        <div className="md:col-span-3">
+          <Column title="Resources" items={RESOURCES} />
+          <div className="mt-8">
+            <p className="text-xs uppercase tracking-widest text-faint">Legal</p>
+            <div className="mt-4 flex flex-col gap-2 text-sm">
+              <Link to="/privacy" className="text-muted hover:text-fg">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="text-muted hover:text-fg">
+                Terms of Service
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-5 text-xs text-faint sm:flex-row sm:justify-between">
-          <p>EXIOR — Transform your enterprise.</p>
-          <p>La conception du plan est incluse. Le déploiement technique est distinct.</p>
+          <p>EXIOR — Transform Your Enterprise.</p>
+          <p>Technical implementation is a separate engagement.</p>
         </div>
       </div>
     </footer>
@@ -135,7 +177,5 @@ export function Shell({ children }: { children: ReactNode }) {
 }
 
 export function Kicker({ children }: { children: ReactNode }) {
-  return (
-    <p className="text-sm text-muted">{children}</p>
-  );
+  return <p className="text-sm text-muted">{children}</p>;
 }

@@ -1,138 +1,165 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell, Kicker } from "@/components/site/chrome";
-import { agentRules, disciplines, sources } from "@/lib/site-content";
-import { disciplineNotes } from "@/lib/library";
 
-export const Route = createFileRoute("/expertise")({ component: Expertise });
+export const Route = createFileRoute("/expertise")({
+  head: () => ({
+    meta: [
+      { title: "Enterprise Architecture, AI & Business Transformation | EXIOR" },
+      {
+        name: "description",
+        content:
+          "Explore EXIOR's expertise in business strategy, organizational architecture, process optimization, data systems, AI agents, and cybersecurity.",
+      },
+    ],
+  }),
+  component: Expertise,
+});
+
+const DISCIPLINES = [
+  {
+    title: "Strategy & Economics",
+    lead: "Design for the business you need to become.",
+    text: "Enterprise transformation begins with your economic reality: customers, market position, operating margins, resources, and competitive constraints. EXIOR connects strategic priorities to the operational capabilities your company needs to develop.",
+    items: [
+      "Business model and value chain analysis",
+      "Competitive positioning",
+      "Margin and capacity constraints",
+      "Strategic trade-offs",
+      "Transformation priorities",
+    ],
+  },
+  {
+    title: "Organizational Architecture",
+    lead: "Make every function work as one enterprise.",
+    text: "Define responsibilities, decision rights, coordination mechanisms, and the interactions between teams. EXIOR designs an organizational structure that supports execution across the entire value chain.",
+    items: [
+      "Current-state organizational mapping",
+      "Target operating model",
+      "Responsibilities and decision rights",
+      "Cross-functional interfaces",
+      "Decision and coordination processes",
+    ],
+  },
+  {
+    title: "Process Intelligence",
+    lead: "Understand the process. Optimize the system.",
+    text: "Critical business processes are decomposed into activities, information, rules, dependencies, and exceptions. Where appropriate, EXIOR applies operations research and optimization methods to identify better ways to allocate resources, manage constraints, and coordinate work.",
+    items: [
+      "End-to-end workflow analysis",
+      "Process decomposition",
+      "Bottleneck identification",
+      "Constraint modeling",
+      "Target process design",
+      "Optimization opportunities",
+    ],
+  },
+  {
+    title: "Macroeconomic Intelligence",
+    lead: "Connect enterprise decisions to the economic environment.",
+    text: "Interest rates, input prices, labor conditions, and market demand influence how businesses invest and transform. EXIOR incorporates relevant, sourced economic indicators into the prioritization and sequencing of your transformation roadmap.",
+    items: [
+      "Economic conditions and financing constraints",
+      "Demand and cost scenarios",
+      "Labor and capacity considerations",
+      "Decision-relevant economic indicators",
+      "Scenario-sensitive implementation planning",
+    ],
+  },
+  {
+    title: "Industry Intelligence",
+    lead: "Understand the standards shaping your market.",
+    text: "EXIOR evaluates the operational and competitive dynamics relevant to your business. Industry practices, market developments, and observable performance indicators help identify which capabilities matter most.",
+    items: [
+      "Industry-specific operating models",
+      "Competitive benchmarks where available",
+      "Service levels and operational standards",
+      "Customer acquisition and retention dynamics",
+      "Sector-specific transformation opportunities",
+    ],
+  },
+  {
+    title: "Artificial Intelligence",
+    lead: "Put intelligent agents to work where they create value.",
+    text: "EXIOR identifies business activities suited to AI agents and designs the operating boundaries required for reliable use. Each selected agent is specified with a defined objective, authorized tools, required context, verification mechanisms, and human controls.",
+    items: [
+      "Agent use-case identification",
+      "Multi-agent workflow architecture",
+      "Agent harness specifications",
+      "Tool access and context requirements",
+      "Human approval mechanisms",
+      "Operational safeguards",
+    ],
+  },
+  {
+    title: "Data & Digital Systems",
+    lead: "Connect the systems your enterprise depends on.",
+    text: "EXIOR maps your existing software, information sources, business objects, and integration requirements. The target architecture defines how information should move between systems and where consistent data definitions are essential.",
+    items: [
+      "Application landscape mapping",
+      "Business data models",
+      "System ownership",
+      "Data flow architecture",
+      "Integration priorities",
+      "Technology retention and replacement decisions",
+    ],
+  },
+  {
+    title: "Cybersecurity & Sovereignty",
+    lead: "Build security into the architecture.",
+    text: "Data access, system permissions, traceability, residency, and human accountability are integrated into the target design. EXIOR uses established security principles and recognized frameworks to specify appropriate controls.",
+    items: [
+      "Data classification",
+      "Access and permission architecture",
+      "Agent activity logging",
+      "Human intervention and approval",
+      "Data residency requirements",
+      "Security and governance controls",
+    ],
+  },
+] as const;
 
 function Expertise() {
   return (
     <Shell>
-      <main className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-        <Kicker>Expertise</Kicker>
-        <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl">
-          Ce que les meilleurs cabinets séparent, EXIOR le réunit.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-          Stratégie, processus, data, cybersécurité, acquisition, agents.
-          Une méthode éprouvée, les outils les plus sérieux du moment, et un seul
-          plan — le vôtre. Ouvrez une discipline.
-        </p>
-
-        <div className="mt-12 flex gap-2 overflow-x-auto pb-2">
-          {disciplines.map((d) => (
-            <a
-              key={d.id}
-              href={`#${d.id}`}
-              className="shrink-0 rounded-full border border-line px-4 py-2 text-sm text-muted hover:text-fg"
-            >
-              {d.title}
-            </a>
-          ))}
-        </div>
-
-        <div className="mt-8 space-y-16">
-          {disciplines.map((d) => (
-            <article key={d.id} id={d.id} className="scroll-mt-24 border-t border-line pt-10">
-              <div className="grid gap-8 md:grid-cols-12">
-                <div className="md:col-span-4">
-                  <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{d.title}</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">{d.lead}</p>
+      <main>
+        <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+          <Kicker>ENTERPRISE TRANSFORMATION EXPERTISE</Kicker>
+          <h1 className="mt-4 max-w-3xl text-4xl font-medium tracking-[-0.03em] md:text-6xl">
+            Every discipline. One connected architecture.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+            Strategy, organizational design, process optimization, economics, data architecture, AI agents, and cybersecurity belong to the same transformation. EXIOR combines these disciplines into a coherent enterprise blueprint.
+          </p>
+        </section>
+        <section className="border-t border-line">
+          <div className="mx-auto max-w-6xl divide-y divide-line px-5">
+            {DISCIPLINES.map((item) => (
+              <article key={item.title} className="grid gap-8 py-12 md:grid-cols-12 md:py-16">
+                <div className="md:col-span-7">
+                  <h2 className="text-2xl font-medium tracking-tight md:text-3xl">{item.title}</h2>
+                  <p className="mt-3 text-lg">{item.lead}</p>
+                  <p className="mt-4 leading-relaxed text-muted">{item.text}</p>
                 </div>
-                <div className="md:col-span-8">
-                  <p className="mt-4 text-base leading-relaxed text-fg">{d.body}</p>
-                  <p className="mt-4 text-sm leading-relaxed text-muted">
-                    {disciplineNotes[d.id]?.depth}
-                  </p>
-                  <ol className="mt-6 grid gap-3">
-                    {d.method.map((step, i) => (
-                      <li key={step} className="flex gap-4 rounded-md border border-line px-4 py-3">
-                        <span className="text-xs text-accent">0{i + 1}</span>
-                        <span className="text-sm leading-relaxed">{step}</span>
+                <div className="md:col-span-5">
+                  <p className="text-xs uppercase tracking-widest text-faint">Core capabilities</p>
+                  <ul className="mt-4 space-y-3 text-sm">
+                    {item.items.map((line) => (
+                      <li key={line} className="border-t border-line pt-3">
+                        {line}
                       </li>
                     ))}
-                  </ol>
-                  <div className="mt-6 grid gap-4 md:grid-cols-2">
-                    <div>
-                      <p className="text-xs uppercase tracking-widest text-faint">Questions du plan</p>
-                      <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted">
-                        {disciplineNotes[d.id]?.questions.map((q) => (
-                          <li key={q}>{q}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <p className="text-xs uppercase tracking-widest text-faint">Pièces</p>
-                      <ul className="mt-3 space-y-2 text-sm">
-                        {disciplineNotes[d.id]?.artifacts.map((a) => (
-                          <li key={a} className="border-t border-line pt-2">{a}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+                  </ul>
                 </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <section className="mt-20 border-t border-line pt-12">
-          <Kicker>Agents</Kicker>
-          <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight">
-            Six règles pour un agent que l’on peut laisser tourner.
-          </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">
-            Déployer un agent fiable, ce n’est pas choisir un modèle. C’est écrire
-            le contrat d’usage avant la première connexion. Ces règles sont celles
-            que le plan applique à chaque cas retenu.
-          </p>
-          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {agentRules.map((rule) => (
-              <article key={rule.title} className="rounded-lg border border-line p-5">
-                <h3 className="text-lg font-semibold">{rule.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{rule.text}</p>
               </article>
             ))}
           </div>
         </section>
-
-        <section className="mt-20 border-t border-line pt-12">
-          <Kicker>Sources</Kicker>
-          <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight">
-            Branchés sur des références que vous pouvez vérifier.
-          </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">
-            Nous ne revendiquons pas un réseau fermé d’analystes ni un benchmark
-            maison. Le plan cite ses sources. Si une donnée n’est pas sourcée, elle
-            est marquée comme hypothèse, pas comme fait.
-          </p>
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {sources.map((group) => (
-              <article key={group.group} className="rounded-lg border border-line p-6">
-                <h3 className="text-lg font-semibold">{group.group}</h3>
-                <ul className="mt-4 space-y-3">
-                  {group.items.map((item) => (
-                    <li key={item} className="border-t border-line pt-3 text-sm leading-relaxed text-muted">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+        <section className="border-t border-line">
+          <div className="mx-auto max-w-6xl px-5 py-16">
+            <Link to="/offre" className="inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
+              Get Your Transformation Plan — $499
+            </Link>
           </div>
-        </section>
-
-        <section className="mt-20 rounded-lg border border-line bg-bg-2 p-6 md:p-10">
-          <h2 className="text-2xl font-semibold tracking-tight">Ce que cette page ne prétend pas</h2>
-          <ul className="mt-6 grid gap-4 text-sm leading-relaxed text-muted md:grid-cols-2">
-            <li>Nous ne certifions pas votre entreprise ISO, ANSSI ou autre.</li>
-            <li>Nous ne publions pas de prévisions macroéconomiques propriétaires.</li>
-            <li>Nous ne garantissons pas un gain de marge chiffré avant d’avoir vu vos données.</li>
-            <li>Nous ne déployons pas les systèmes dans le prix du plan.</li>
-          </ul>
-          <Link to="/offre" className="mt-8 inline-flex text-sm font-medium text-accent">
-            Passer à l’offre →
-          </Link>
         </section>
       </main>
     </Shell>

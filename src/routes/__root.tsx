@@ -3,7 +3,7 @@ import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import appCss from "../styles.css?url";
 
-const APP_NAME = "EXIOR — Transformation d'entreprise";
+const APP_NAME = "EXIOR | Enterprise Transformation Architecture & AI Strategy";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -14,7 +14,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "EXIOR conçoit le plan de transformation de votre entreprise : organisation, processus, données, IA, veille et feuille de route. 499 $, livré en 14 jours.",
+          "Transform your business with a personalized enterprise architecture connecting organization, processes, data, technology, and AI. Your EXIOR Transformation Plan for $499, delivered in 14 days.",
       },
       { name: "theme-color", content: "#090a0b" },
     ],
@@ -30,7 +30,7 @@ export const Route = createRootRoute({
     ],
   }),
   component: () => (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
