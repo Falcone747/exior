@@ -167,7 +167,7 @@ export function SpaceStage({ initial = "map" as Tab }: { initial?: Tab }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-line bg-[#0c0d0e] text-left shadow-[0_40px_100px_rgba(0,0,0,0.4)]">
       <div className="flex flex-wrap items-center gap-3 border-b border-line px-4 py-3">
-        <img src="/visuals/logo.jpg" alt="" className="size-6 object-contain" />
+        <img src="/visuals/logo-transparent.png" alt="" className="size-6 object-contain" />
         <p className="text-sm font-medium">EXIOR Space</p>
         <p className="text-xs text-faint">Meridian · Illustrative example · Day 14</p>
         <div className="ml-auto flex rounded-full border border-line p-0.5 text-xs">

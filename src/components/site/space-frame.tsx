@@ -46,7 +46,7 @@ export function SpaceFrame({ initial = "map" }: { initial?: View }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-line bg-[#0c0d0e] text-left shadow-[0_40px_100px_rgba(0,0,0,0.4)]">
       <div className="flex items-center gap-3 border-b border-line px-4 py-3">
-        <img src="/visuals/logo.jpg" alt="" className="size-6 object-contain" />
+        <img src="/visuals/logo-transparent.png" alt="" className="size-6 object-contain" />
         <p className="text-sm font-medium">EXIOR Space</p>
         <p className="text-xs text-faint">Meridian · Day 14</p>
         <span className="ml-auto rounded-full border border-accent-fill/60 px-2.5 py-1 text-[11px] text-fg">Blueprint</span>
