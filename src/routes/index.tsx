@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
 import { Shell } from "@/components/site/chrome";
-import { Film, type FilmName } from "@/components/site/films";
+import { Reel, Still } from "@/components/site/media";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,14 +20,6 @@ export const Route = createFileRoute("/")({
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const PLAN = [
-  { k: "Organization", v: "Functions, decisions, and interfaces." },
-  { k: "Operations", v: "The value chain, with constraints named." },
-  { k: "Data", v: "Objects, sources, and ownership." },
-  { k: "Agents", v: "Selected use cases, with boundaries." },
-  { k: "Security", v: "Access, residency, traceability." },
-] as const;
-
 const PILLARS = [
   {
     kicker: "Discover",
@@ -35,7 +27,7 @@ const PILLARS = [
     text: "EXIOR maps your current organization, operating processes, business systems, information flows, and critical dependencies. It identifies where performance is constrained, where decisions are delayed, where systems are disconnected, and where transformation creates the greatest strategic value.",
     href: "/expertise",
     cta: "Explore Enterprise Analysis",
-    film: "chain" as FilmName,
+    film: "factory",
     points: [
       "End-to-end value chain mapping",
       "Organizational structure and decision flows",
@@ -50,7 +42,7 @@ const PILLARS = [
     text: "EXIOR brings every layer of your business into a coherent target architecture — from organizational responsibilities to digital infrastructure and AI capabilities. Every function, system, process, and agent has a defined role within the wider enterprise.",
     href: "/expertise",
     cta: "Explore Enterprise Architecture",
-    film: "layers" as FilmName,
+    film: "layers",
     points: [
       "Target organizational structure",
       "Redesigned operational processes",
@@ -65,7 +57,7 @@ const PILLARS = [
     text: "EXIOR translates your future architecture into a prioritized transformation plan. Know what to build, what to connect, what to retain, and what needs to happen first.",
     href: "/methode",
     cta: "Explore the Transformation Roadmap",
-    film: "roadmap" as FilmName,
+    film: "milestones",
     points: [
       "Transformation initiatives prioritized by value, risk, and dependency",
       "Clear implementation stages",
@@ -80,7 +72,7 @@ const PILLARS = [
     text: "AI models improve. Technologies change. Business requirements shift. Your architecture brings these moving parts together through modular structures, explicit interfaces, and reusable capabilities. Add new technologies and capabilities without redesigning your entire organization around each new tool.",
     href: "/expertise",
     cta: "Discover Adaptive Architecture",
-    film: "map" as FilmName,
+    film: "logistics",
     points: [
       "Modular organizational and digital design",
       "Extensible integrations",
@@ -132,37 +124,6 @@ function Reveal({ children, className, delay = 0 }: { children: ReactNode; class
       transition={{ duration: 0.6, delay, ease }}
     >
       {children}
-    </motion.div>
-  );
-}
-
-function PlanCard() {
-  const reduce = useReducedMotion();
-  return (
-    <motion.div
-      className="overflow-hidden rounded-2xl border border-accent-fill/50 bg-surface/80 text-left shadow-[0_40px_120px_rgba(0,0,0,0.45)]"
-      initial={reduce ? false : { opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.12, ease }}
-    >
-      <div className="flex items-center justify-between border-b border-line px-5 py-4">
-        <div className="flex items-center gap-3">
-          <img src="/visuals/logo.jpg" alt="" className="size-8 object-contain" />
-          <div>
-            <p className="text-sm font-medium">EXIOR Blueprint</p>
-            <p className="text-xs text-faint">EXIOR Space · Day 14</p>
-          </div>
-        </div>
-        <span className="rounded-full border border-accent-fill/70 px-2.5 py-1 text-[11px] text-fg">Deliverable</span>
-      </div>
-      <ul>
-        {PLAN.map((row) => (
-          <li key={row.k} className="grid grid-cols-[8.5rem_1fr] gap-3 border-b border-line/80 px-5 py-3.5 last:border-0">
-            <span className="text-xs text-faint">{row.k}</span>
-            <span className="text-sm">{row.v}</span>
-          </li>
-        ))}
-      </ul>
     </motion.div>
   );
 }
@@ -221,7 +182,7 @@ function Home() {
             </motion.div>
             <p className="mt-5 text-sm text-muted">$499 · Delivered in 14 days</p>
           </div>
-          <PlanCard />
+          <Reel src="/media/model.mp4" poster="/media/model.jpg" label="Layered architecture model" />
         </section>
 
         <section id="blueprint" className="border-y border-line">
@@ -233,7 +194,7 @@ function Home() {
               EXIOR brings the disciplines behind enterprise transformation into a single, coordinated plan. From organizational design to AI agents, every component is connected to the way your business creates value.
             </p>
             <div className="mt-10">
-              <Film name="map" />
+              <Reel src="/media/meeting.mp4" poster="/media/meeting.jpg" label="A leadership team around the architecture" />
             </div>
           </div>
         </section>
@@ -250,7 +211,11 @@ function Home() {
                 </Link>
               </Reveal>
               <Reveal delay={0.06}>
-                <Film name={pillar.film} />
+                {pillar.film === "layers" ? (
+                  <Still src="/media/layers.jpg" alt="The layers of the target architecture" />
+                ) : (
+                  <Reel src={`/media/${pillar.film}.mp4`} poster={`/media/${pillar.film}.jpg`} label={pillar.kicker} />
+                )}
                 <ul className="mt-4 divide-y divide-line rounded-2xl border border-line">
                   {pillar.points.map((point) => (
                     <li key={point} className="px-5 py-4 text-sm leading-relaxed">
@@ -275,7 +240,7 @@ function Home() {
               </p>
             </Reveal>
             <div className="mt-10">
-              <Film name="space" />
+              <Still src="/media/office.jpg" alt="The EXIOR Space, a private working room" />
             </div>
             <div className="mt-12 grid gap-4 md:grid-cols-2">
               {SPACE.map((item, i) => (
@@ -341,7 +306,7 @@ function Home() {
               </p>
             </div>
             <div>
-              <Film name="agent" />
+              <Still src="/media/decision.jpg" alt="A decision that stays with a person" />
               <h3 className="mt-8 text-lg font-medium">Agent governance</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 Intelligent execution. Defined boundaries. An agent can be authorized to retrieve an order status without being authorized to change a commercial price. A document-processing agent can prepare a file for review without making the final approval decision.

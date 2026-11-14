@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Shell, Kicker } from "@/components/site/chrome";
-import { Film } from "@/components/site/films";
+import { Still } from "@/components/site/media";
 
 export const Route = createFileRoute("/sources")({
   head: () => ({
@@ -81,7 +81,7 @@ function SourcesPage() {
             EXIOR combines your business information with relevant public research, industry data, technical standards, and recognized architectural principles. Each source has a defined purpose: inform a decision, evaluate a constraint, or support a transformation priority.
           </p>
           <div className="mt-10 max-w-4xl">
-            <Film name="map" />
+            <Still src="/media/meeting.jpg" alt="Decisions reviewed against the architecture" />
           </div>
         </section>
         {GROUPS.map((group) => (
