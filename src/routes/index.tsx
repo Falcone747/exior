@@ -20,8 +20,14 @@ export const Route = createFileRoute("/")({
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+const VISUALS = {
+  Discover: "/visuals/map.jpg",
+  Architect: "/visuals/architecture.jpg",
+  Transform: "/visuals/roadmap.jpg",
+  Evolve: "/visuals/map.jpg",
+} as const;
+
 const PILLARS = [
-  {
     kicker: "Discover",
     title: "See where your business is being held back.",
     text: "We map how work moves across teams and systems, name the constraint that matters, and connect it to your operating priorities.",
@@ -139,7 +145,12 @@ function Home() {
                 </ul>
               </Reveal>
               <Reveal delay={0.06}>
-                <SpaceStage initial={pillar.view} />
+                <img
+                  src={VISUALS[pillar.kicker]}
+                  alt={`${pillar.kicker} — Meridian sample, illustrative`}
+                  className="w-full rounded-2xl border border-line"
+                />
+                <p className="mt-2 text-xs text-faint">Sample output · Meridian is illustrative, not a client.</p>
               </Reveal>
             </div>
           </section>
