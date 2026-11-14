@@ -4,34 +4,24 @@ import { useState, type ReactNode } from "react";
 
 const NAV = [
   { to: "/", label: "Transformation" },
-  { to: "/expertise", label: "Expertise" },
-  { to: "/situations", label: "Use Cases" },
-  { to: "/methode", label: "How It Works" },
-  { to: "/sources", label: "Resources" },
+  { to: "/method", label: "Method" },
+  { to: "/resources", label: "Resources" },
 ] as const;
 
 const EXPLORE = [
   { to: "/", label: "Enterprise Transformation" },
-  { to: "/expertise", label: "Organizational Architecture" },
-  { to: "/expertise", label: "Process Intelligence" },
-  { to: "/expertise", label: "Digital Architecture" },
-  { to: "/expertise", label: "AI Agents" },
-  { to: "/expertise", label: "Security & Governance" },
+  { to: "/method", label: "The Method" },
+  { to: "/resources", label: "Resources" },
 ] as const;
 
 const COMPANY = [
-  { to: "/expertise", label: "Our Expertise" },
-  { to: "/methode", label: "Our Method" },
-  { to: "/offre", label: "Transformation Plan" },
+  { to: "/offre", label: "Get the Plan" },
   { to: "/", label: "EXIOR Space", hash: "espace" },
-  { to: "/offre", label: "Contact" },
 ] as const;
 
 const RESOURCES = [
-  { to: "/sources", label: "Research & Sources" },
-  { to: "/situations", label: "Business Use Cases" },
-  { to: "/sources", label: "Enterprise Architecture" },
-  { to: "/offre", label: "Frequently Asked Questions" },
+  { to: "/resources", label: "Research & Sources" },
+  { to: "/method", label: "How the Plan Is Built" },
 ] as const;
 
 export function SiteHeader() {
@@ -63,7 +53,7 @@ export function SiteHeader() {
             to="/offre"
             className="hidden rounded-full bg-accent-fill px-4 py-2 text-sm font-medium text-accent-ink lg:inline-flex"
           >
-            Get My Transformation Plan — $499
+            Get Started — $499
           </Link>
           <button
             type="button"
@@ -94,7 +84,7 @@ export function SiteHeader() {
               className="mt-4 inline-flex justify-center rounded-full bg-accent-fill px-4 py-3 text-sm font-medium text-accent-ink"
               onClick={() => setOpen(false)}
             >
-              Get My Transformation Plan — $499
+              Get Started — $499
             </Link>
           </div>
         </div>

@@ -11,9 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExpertiseRouteImport } from './routes/expertise'
+import { Route as MethodRouteImport } from './routes/method'
 import { Route as MethodeRouteImport } from './routes/methode'
 import { Route as OffreRouteImport } from './routes/offre'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as SituationsRouteImport } from './routes/situations'
 import { Route as SourcesRouteImport } from './routes/sources'
 import { Route as TermsRouteImport } from './routes/terms'
@@ -26,6 +28,11 @@ const IndexRoute = IndexRouteImport.update({
 const ExpertiseRoute = ExpertiseRouteImport.update({
   id: '/expertise',
   path: '/expertise',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MethodRoute = MethodRouteImport.update({
+  id: '/method',
+  path: '/method',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MethodeRoute = MethodeRouteImport.update({
@@ -41,6 +48,11 @@ const OffreRoute = OffreRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SituationsRoute = SituationsRouteImport.update({
@@ -62,9 +74,11 @@ const TermsRoute = TermsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/expertise': typeof ExpertiseRoute
+  '/method': typeof MethodRoute
   '/methode': typeof MethodeRoute
   '/offre': typeof OffreRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
   '/situations': typeof SituationsRoute
   '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
@@ -72,9 +86,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/expertise': typeof ExpertiseRoute
+  '/method': typeof MethodRoute
   '/methode': typeof MethodeRoute
   '/offre': typeof OffreRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
   '/situations': typeof SituationsRoute
   '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
@@ -83,9 +99,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/expertise': typeof ExpertiseRoute
+  '/method': typeof MethodRoute
   '/methode': typeof MethodeRoute
   '/offre': typeof OffreRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
   '/situations': typeof SituationsRoute
   '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
@@ -95,9 +113,11 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/expertise'
+    | '/method'
     | '/methode'
     | '/offre'
     | '/privacy'
+    | '/resources'
     | '/situations'
     | '/sources'
     | '/terms'
@@ -105,9 +125,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/expertise'
+    | '/method'
     | '/methode'
     | '/offre'
     | '/privacy'
+    | '/resources'
     | '/situations'
     | '/sources'
     | '/terms'
@@ -115,9 +137,11 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/expertise'
+    | '/method'
     | '/methode'
     | '/offre'
     | '/privacy'
+    | '/resources'
     | '/situations'
     | '/sources'
     | '/terms'
@@ -126,9 +150,11 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExpertiseRoute: typeof ExpertiseRoute
+  MethodRoute: typeof MethodRoute
   MethodeRoute: typeof MethodeRoute
   OffreRoute: typeof OffreRoute
   PrivacyRoute: typeof PrivacyRoute
+  ResourcesRoute: typeof ResourcesRoute
   SituationsRoute: typeof SituationsRoute
   SourcesRoute: typeof SourcesRoute
   TermsRoute: typeof TermsRoute
@@ -150,6 +176,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExpertiseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/method': {
+      id: '/method'
+      path: '/method'
+      fullPath: '/method'
+      preLoaderRoute: typeof MethodRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/methode': {
       id: '/methode'
       path: '/methode'
@@ -169,6 +202,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/situations': {
@@ -198,9 +238,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExpertiseRoute: ExpertiseRoute,
+  MethodRoute: MethodRoute,
   MethodeRoute: MethodeRoute,
   OffreRoute: OffreRoute,
   PrivacyRoute: PrivacyRoute,
+  ResourcesRoute: ResourcesRoute,
   SituationsRoute: SituationsRoute,
   SourcesRoute: SourcesRoute,
   TermsRoute: TermsRoute,

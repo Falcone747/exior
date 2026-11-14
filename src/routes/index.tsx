@@ -1,8 +1,7 @@
-import type { ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
 import { Shell } from "@/components/site/chrome";
-import { SpaceStage, Timeline, MERIDIAN } from "@/components/site/visuals";
+import { SpaceStage } from "@/components/site/visuals";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -11,98 +10,50 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "A personalized enterprise transformation blueprint, target architecture, implementation roadmap and EXIOR Space. $499. Delivered in 14 days after complete intake. Technical deployment is separate.",
+          "A personalized enterprise transformation plan, target architecture, implementation roadmap and EXIOR Space. $499. Delivered in 14 days after complete intake. Technical deployment is separate.",
       },
     ],
   }),
   component: Home,
 });
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
-const VISUALS = {
-  Discover: "/visuals/map.jpg",
-  Architect: "/visuals/architecture.jpg",
-  Transform: "/visuals/roadmap.jpg",
-  Evolve: "/visuals/map.jpg",
-} as const;
-
-const PILLARS = [
-  {
-    kicker: "Discover",
-    title: "See where your business is being held back.",
-    text: "We map how work moves across teams and systems, name the constraint that matters, and connect it to your operating priorities.",
-    points: ["Value-chain mapping", "Decision and ownership gaps", "System and data dependencies", "Prioritized opportunities"],
-    view: "map" as const,
-  },
-  {
-    kicker: "Architect",
-    title: "One architecture for how your enterprise operates.",
-    text: "We design a target organization and digital environment that connects functions, systems, data and selected AI capabilities, with responsibilities defined.",
-    points: ["Target operating model", "Integration architecture", "Data ownership", "Agent roles and guardrails"],
-    view: "layers" as const,
-  },
-  {
-    kicker: "Transform",
-    title: "Know exactly what to change first.",
-    text: "The roadmap turns the architecture into an ordered set of decisions. Each priority is grounded in readiness, dependency and risk.",
-    points: ["A clear first initiative", "Prerequisites named", "Sequencing", "Human decision gates"],
-    view: "roadmap" as const,
-  },
-  {
-    kicker: "Evolve",
-    title: "A foundation built to accommodate change.",
-    text: "New tools and AI capabilities attach to named objects and interfaces. You do not redesign the company around each new product.",
-    points: ["Retained systems", "Explicit interfaces", "Governed agent specs", "What not to migrate"],
-    view: "systems" as const,
-  },
+const LAYERS = [
+  { id: "org", name: "Organization", line: "Define who owns each capability, decision, and handoff.", detail: "Target functions, accountabilities, interfaces and decision cadence." },
+  { id: "proc", name: "Processes", line: "Redesign how work flows from demand to delivery.", detail: "Inputs, exceptions, bottlenecks, rules and target workflows." },
+  { id: "data", name: "Data", line: "Give critical business information a reliable structure.", detail: "Authoritative sources, business objects, ownership and data flows." },
+  { id: "sys", name: "Systems", line: "Connect the technology your operations depend on.", detail: "Applications to retain, integrate, modernize or retire." },
+  { id: "ai", name: "AI Agents", line: "Specify intelligent capabilities where they make operational sense.", detail: "Selected use cases, authorized tools, verification and human approval." },
+  { id: "sec", name: "Security", line: "Build control and traceability into the design.", detail: "Permissions, residency requirements, activity logs and intervention rules." },
 ] as const;
 
-const FAQ = [
-  ["Is this a generic AI report?", "No. The plan is built from your dossier: how you sell, who decides, which systems hold the truth, and what you will not change."],
-  ["Does $499 include implementation?", "No. The plan, the architecture and the EXIOR Space are included. Software implementation, migration and running agents are a separate engagement."],
-  ["When do the 14 days begin?", "When the intake dossier is complete. Not at payment, and not on a half-filled form."],
-  ["Can my team implement it?", "Yes. The roadmap is written so you can execute it without us, or with a partner you choose."],
-  ["Does it lock us to a platform?", "No. EXIOR is independent of any single software vendor. Existing systems are kept where they should be kept."],
+const DELIVERABLES = [
+  { t: "Enterprise analysis", d: "How the business actually runs.", span: "md:col-span-7" },
+  { t: "Target architecture", d: "Organization, processes, data, systems and AI in one design.", span: "md:col-span-5" },
+  { t: "Process priorities", d: "The constraints that matter first." },
+  { t: "Data ownership", d: "One source of truth per object." },
+  { t: "Roadmap", d: "Order, prerequisites, human gates." },
+  { t: "Security requirements", d: "Permissions, audit, intervention." },
+  { t: "Context", d: "Economic and industry intelligence relevant to the decision." },
 ] as const;
-
-function Reveal({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
-  const reduce = useReducedMotion();
-  return (
-    <motion.div
-      className={className}
-      initial={reduce ? false : { opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.55, delay, ease }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 function Home() {
-  const reduce = useReducedMotion();
+  const [layer, setLayer] = useState(0);
+  const [side, setSide] = useState<"current" | "target">("current");
+  const L = LAYERS[layer];
+
   return (
     <Shell>
       <main>
-        <section className="mx-auto grid max-w-6xl items-center gap-12 px-5 pb-16 pt-16 md:pt-24 lg:grid-cols-[1fr_1.15fr]">
+        <section className="mx-auto grid max-w-6xl items-center gap-10 px-5 pb-16 pt-12 md:pt-20 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <motion.p className="text-xs tracking-[0.16em] text-muted" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }}>
-              ENTERPRISE TRANSFORMATION ARCHITECTURE
-            </motion.p>
-            <motion.h1
-              className="mt-4 text-4xl font-medium tracking-[-0.04em] md:text-6xl"
-              initial={reduce ? false : { opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease }}
-            >
-              Transform your enterprise. Start with the blueprint.
-            </motion.h1>
+            <p className="text-xs tracking-[0.16em] text-muted">EXIOR / ENTERPRISE TRANSFORMATION</p>
+            <h1 className="mt-4 text-4xl font-medium tracking-[-0.04em] md:text-6xl">Transform your enterprise. Start with the blueprint.</h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
-              EXIOR analyzes your business and designs a future-ready organization, connected digital architecture, and prioritized AI integration roadmap. Every part of your transformation, connected in one actionable plan.
+              EXIOR designs the next version of your business — its organization, processes, systems, data, and AI capabilities — as one connected architecture. Get a personalized plan showing exactly what to change, how it fits together, and where to begin.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <p className="mt-4 text-sm text-muted">Make your next technology and transformation decisions with a clear architecture behind them.</p>
+            <p className="mt-5 text-sm">$499 · Personalized plan · Delivered in 14 days after complete intake</p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link to="/offre" className="inline-flex items-center justify-center rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
                 Get My Transformation Plan — $499
               </Link>
@@ -110,107 +61,125 @@ function Home() {
                 Explore a Sample Blueprint
               </a>
             </div>
-            <p className="mt-5 text-sm text-muted">Your personalized plan. $499. Delivered in 14 days after complete intake.</p>
-            <p className="mt-2 text-xs text-faint">Enterprise-wide analysis · Target architecture · Prioritized roadmap · Personalized EXIOR Space</p>
+            <p className="mt-4 text-xs text-faint">Business analysis · Target architecture · Prioritized roadmap · EXIOR Space</p>
           </div>
           <div id="espace">
+            <p className="mb-2 text-xs text-faint">Inside EXIOR Space · Meridian — Illustrative Example</p>
             <SpaceStage />
-            <p className="mt-3 text-xs text-faint">Inside EXIOR Space — illustrative enterprise transformation.</p>
           </div>
         </section>
 
         <section className="border-y border-line">
-          <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-            <p className="text-xs tracking-[0.16em] text-muted">ONE CONNECTED ENTERPRISE</p>
-            <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">Design the business. Connect every layer.</h2>
+          <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
+            <p className="text-xs tracking-[0.16em] text-muted">THE COST OF DISCONNECTED DECISIONS</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">Every new tool changes the business around it.</h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
-              Your company runs on relationships between people, processes, information and systems. EXIOR maps those relationships and defines an architecture in which each component supports the rest.
+              A new platform affects how people work. A new automation changes a process. An AI agent relies on data, permissions, and decisions that may not be ready. When these changes happen independently, complexity grows faster than the business becomes stronger.
             </p>
-            <ul className="mt-8 grid gap-3 md:grid-cols-3">
-              {["From strategy to execution.", "From fragmented data to defined ownership.", "From isolated AI experiments to governed capabilities."].map((t) => (
-                <li key={t} className="rounded-2xl border border-line px-5 py-4 text-sm">{t}</li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {PILLARS.map((pillar) => (
-          <section key={pillar.kicker} className="border-b border-line">
-            <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-2 md:py-24">
-              <Reveal>
-                <p className="text-xs tracking-[0.16em] text-muted">{pillar.kicker}</p>
-                <h2 className="mt-3 text-3xl font-medium tracking-[-0.03em] md:text-4xl">{pillar.title}</h2>
-                <p className="mt-5 leading-relaxed text-muted">{pillar.text}</p>
-                <ul className="mt-6 space-y-2 text-sm">
-                  {pillar.points.map((p) => <li key={p} className="text-muted">— {p}</li>)}
+            <p className="mt-3 text-sm">The advantage comes from designing how everything works together.</p>
+            <div className="mt-6 flex gap-2 md:hidden">
+              <button type="button" onClick={() => setSide("current")} className={side === "current" ? "rounded-full border border-accent-fill/60 px-3 py-1 text-sm" : "rounded-full border border-line px-3 py-1 text-sm text-muted"}>Current</button>
+              <button type="button" onClick={() => setSide("target")} className={side === "target" ? "rounded-full border border-accent-fill/60 px-3 py-1 text-sm" : "rounded-full border border-line px-3 py-1 text-sm text-muted"}>Target</button>
+            </div>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              <article className={side === "target" ? "hidden rounded-2xl border border-line p-5 md:block" : "rounded-2xl border border-line p-5"}>
+                <p className="text-xs text-faint">CURRENT ENTERPRISE</p>
+                <h3 className="mt-3 text-lg">Disconnected operations. Delayed decisions.</h3>
+                <ul className="mt-4 space-y-2 text-sm text-muted">
+                  <li>Customer promises made before capacity is visible.</li>
+                  <li>Critical data distributed across systems.</li>
+                  <li>Manual handoffs slow execution.</li>
                 </ul>
-              </Reveal>
-              <Reveal delay={0.06}>
-                <img
-                  src={VISUALS[pillar.kicker]}
-                  alt={`${pillar.kicker} — Meridian sample, illustrative`}
-                  className="w-full rounded-2xl border border-line"
-                />
-                <p className="mt-2 text-xs text-faint">Sample output · Meridian is illustrative, not a client.</p>
-              </Reveal>
+                <p className="mt-4 text-xs text-faint">Today: fragmented responsibilities, late signals, manual handoffs.</p>
+              </article>
+              <article className={side === "current" ? "hidden rounded-2xl border border-accent-fill/40 p-5 md:block" : "rounded-2xl border border-accent-fill/40 p-5"}>
+                <p className="text-xs text-faint">TARGET ARCHITECTURE</p>
+                <h3 className="mt-3 text-lg">Connected information. Clear decision rights.</h3>
+                <ul className="mt-4 space-y-2 text-sm text-muted">
+                  <li>Capacity informs customer commitments.</li>
+                  <li>Business objects have defined owners and sources.</li>
+                  <li>People, systems and agents operate within shared rules.</li>
+                </ul>
+                <p className="mt-4 text-xs text-faint">Target: connected processes, clear ownership, governed intelligence.</p>
+              </article>
             </div>
-          </section>
-        ))}
+            <p className="mt-4 text-xs text-faint">Illustrative operating model: Meridian</p>
+            <a href="#architecture" className="mt-4 inline-flex text-sm">See the target architecture</a>
+          </div>
+        </section>
 
-        <section className="border-b border-line">
+        <section id="architecture" className="border-b border-line">
+          <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-[0.38fr_0.62fr] md:py-24">
+            <div>
+              <p className="text-xs tracking-[0.16em] text-muted">FROM STRATEGY TO EXECUTION</p>
+              <h2 className="mt-3 text-3xl font-medium tracking-[-0.03em] md:text-4xl">Design the whole enterprise, not isolated improvements.</h2>
+              <p className="mt-5 leading-relaxed text-muted">
+                Your future operating model, processes, information, applications, AI agents, and controls are interdependent. EXIOR defines the relationships so each planned change strengthens the architecture rather than creating another exception.
+              </p>
+              <ul className="mt-6 space-y-2">
+                {LAYERS.map((l, i) => (
+                  <li key={l.id}>
+                    <button type="button" onClick={() => setLayer(i)} className={i === layer ? "w-full rounded-xl border border-accent-fill/60 px-3 py-2 text-left text-sm" : "w-full rounded-xl border border-line px-3 py-2 text-left text-sm text-muted"}>
+                      0{i + 1} {l.name}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-sm">Know what stays. What connects. What changes first.</p>
+              <Link to="/method" className="mt-4 inline-flex text-sm">Explore How It Works</Link>
+            </div>
+            <div className="rounded-2xl border border-line p-6">
+              <p className="text-xs text-faint">0{layer + 1}</p>
+              <h3 className="mt-2 text-2xl">{L.name}</h3>
+              <p className="mt-4 text-lg">{L.line}</p>
+              <p className="mt-3 text-muted">{L.detail}</p>
+              <p className="mt-6 text-sm">A coherent operating architecture. A practical basis for transformation.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="deliverables" className="border-b border-line">
           <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
-            <p className="text-xs tracking-[0.16em] text-muted">SAMPLE COMPANY</p>
-            <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">Meridian, before and after the architecture.</h2>
+            <p className="text-xs tracking-[0.16em] text-muted">SEE WHAT YOU'RE BUYING</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">Your company's future architecture. Made visible.</h2>
             <p className="mt-5 max-w-2xl text-muted">
-              {MERIDIAN.rule} This is an illustrative company. The plan proposes the architecture. It does not operate it.
+              Open your EXIOR Space and see the enterprise map, target architecture, implementation priorities and open decisions in one place.
             </p>
-            <div className="mt-8 grid gap-4 md:grid-cols-2">
-              <div className="rounded-2xl border border-line p-5">
-                <p className="text-xs text-faint">Current</p>
-                <p className="mt-3 text-sm">Quotes go out before capacity is checked. Production is an 11-day constraint. Stock is not one number. Shipment waits.</p>
-              </div>
-              <div className="rounded-2xl border border-accent-fill/40 p-5">
-                <p className="text-xs text-faint">Target architecture</p>
-                <p className="mt-3 text-sm">CRM reads the capacity signal. Price and release stay with a person. One stock figure. Invoice follows the released shipment.</p>
-              </div>
+            <div className="mt-8 grid gap-3 md:grid-cols-12">
+              {DELIVERABLES.map((d) => (
+                <article key={d.t} className={`rounded-2xl border border-line p-5 ${"span" in d ? d.span : "md:col-span-4"}`}>
+                  <h3 className="text-lg">{d.t}</h3>
+                  <p className="mt-2 text-sm text-muted">{d.d}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="border-b border-line">
-          <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
-            <p className="text-xs tracking-[0.16em] text-muted">FOURTEEN DAYS</p>
-            <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">The clock starts when the dossier is complete.</h2>
-            <div className="mt-8">
-              <Timeline />
-            </div>
-            <Link to="/methode" className="mt-6 inline-flex text-sm text-fg">See how the plan is built</Link>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-6xl px-5 py-20 md:py-28">
-          <div className="grid gap-12 md:grid-cols-2">
+        <section id="pricing" className="border-b border-line">
+          <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-2 md:py-24">
             <div>
               <p className="text-xs tracking-[0.16em] text-muted">THE PLAN</p>
-              <h2 className="mt-3 text-3xl font-medium tracking-[-0.03em] md:text-5xl">Your enterprise transformation starts with a blueprint.</h2>
-              <p className="mt-4 text-6xl font-medium tracking-[-0.04em]">$499</p>
-              <p className="mt-3 max-w-md text-muted">One-time. Delivered in 14 days after complete intake. Technical deployment is a separate engagement.</p>
-              <Link to="/offre" className="mt-8 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
+              <h2 className="mt-3 text-3xl font-medium tracking-[-0.03em] md:text-5xl">One plan. One price. A clear next step.</h2>
+              <p className="mt-5 text-muted">The plan is designed. The systems are not deployed for $499.</p>
+            </div>
+            <div className="rounded-2xl border border-line p-6">
+              <p className="text-4xl font-medium">$499</p>
+              <p className="mt-2 text-sm text-muted">One-time · Delivered in 14 days after your complete dossier</p>
+              <Link to="/offre" className="mt-6 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
                 Get My Transformation Plan — $499
               </Link>
-            </div>
-            <div>
-              <h3 className="text-lg font-medium">Before you order</h3>
-              <dl className="mt-4 divide-y divide-line rounded-2xl border border-line">
-                {FAQ.map(([q, a]) => (
-                  <div key={q} className="px-5 py-4">
-                    <dt className="text-sm font-medium">{q}</dt>
-                    <dd className="mt-2 text-sm text-muted">{a}</dd>
-                  </div>
-                ))}
-              </dl>
+              <p className="mt-4 text-xs text-faint">Software implementation, migration and running agents are a separate engagement.</p>
             </div>
           </div>
+        </section>
+
+        <section className="mx-auto max-w-3xl px-5 py-24 text-center md:py-32">
+          <h2 className="text-4xl font-medium tracking-[-0.04em] md:text-6xl">Start with the architecture that connects the decisions, systems, and capabilities behind your transformation.</h2>
+          <Link to="/offre" className="mt-8 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
+            Get My Transformation Plan — $499
+          </Link>
+          <p className="mt-4 text-sm text-muted">Your plan. Your priorities. Your decision.</p>
         </section>
       </main>
     </Shell>
