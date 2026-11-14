@@ -2,16 +2,16 @@ import type { ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
 import { Shell } from "@/components/site/chrome";
-import { SpaceFrame } from "@/components/site/space-frame";
+import { SpaceStage, Timeline, MERIDIAN } from "@/components/site/visuals";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "EXIOR | Enterprise Transformation Architecture & AI Strategy" },
+      { title: "EXIOR | Enterprise Transformation Plan — $499" },
       {
         name: "description",
         content:
-          "Transform your business with a personalized enterprise architecture connecting organization, processes, data, technology, and AI. Your EXIOR Transformation Plan for $499, delivered in 14 days.",
+          "A personalized enterprise transformation blueprint, target architecture, implementation roadmap and EXIOR Space. $499. Delivered in 14 days after complete intake. Technical deployment is separate.",
       },
     ],
   }),
@@ -23,94 +23,40 @@ const ease = [0.22, 1, 0.36, 1] as const;
 const PILLARS = [
   {
     kicker: "Discover",
-    title: "Understand your entire business. Identify what comes next.",
-    text: "EXIOR maps your current organization, operating processes, business systems, information flows, and critical dependencies. It identifies where performance is constrained, where decisions are delayed, where systems are disconnected, and where transformation creates the greatest strategic value.",
-    href: "/expertise",
-    cta: "Explore Enterprise Analysis",
-    film: "factory",
-    points: [
-      "End-to-end value chain mapping",
-      "Organizational structure and decision flows",
-      "Critical processes and operational constraints",
-      "Systems, data, and integration dependencies",
-      "Market conditions and competitive priorities",
-    ],
+    title: "See where your business is being held back.",
+    text: "We map how work moves across teams and systems, name the constraint that matters, and connect it to your operating priorities.",
+    points: ["Value-chain mapping", "Decision and ownership gaps", "System and data dependencies", "Prioritized opportunities"],
+    view: "map" as const,
   },
   {
     kicker: "Architect",
-    title: "Design how your future enterprise operates.",
-    text: "EXIOR brings every layer of your business into a coherent target architecture — from organizational responsibilities to digital infrastructure and AI capabilities. Every function, system, process, and agent has a defined role within the wider enterprise.",
-    href: "/expertise",
-    cta: "Explore Enterprise Architecture",
-    film: "layers",
-    points: [
-      "Target organizational structure",
-      "Redesigned operational processes",
-      "Connected data and business systems",
-      "AI agents and automation specifications",
-      "Security, governance, and human oversight",
-    ],
+    title: "One architecture for how your enterprise operates.",
+    text: "We design a target organization and digital environment that connects functions, systems, data and selected AI capabilities, with responsibilities defined.",
+    points: ["Target operating model", "Integration architecture", "Data ownership", "Agent roles and guardrails"],
+    view: "layers" as const,
   },
   {
     kicker: "Transform",
-    title: "Turn enterprise complexity into an executable roadmap.",
-    text: "EXIOR translates your future architecture into a prioritized transformation plan. Know what to build, what to connect, what to retain, and what needs to happen first.",
-    href: "/methode",
-    cta: "Explore the Transformation Roadmap",
-    film: "milestones",
-    points: [
-      "Transformation initiatives prioritized by value, risk, and dependency",
-      "Clear implementation stages",
-      "Defined requirements and decision points",
-      "Practical sequencing across business functions",
-      "A focused first implementation cycle",
-    ],
+    title: "Know exactly what to change first.",
+    text: "The roadmap turns the architecture into an ordered set of decisions. Each priority is grounded in readiness, dependency and risk.",
+    points: ["A clear first initiative", "Prerequisites named", "Sequencing", "Human decision gates"],
+    view: "roadmap" as const,
   },
   {
     kicker: "Evolve",
-    title: "Build an enterprise designed for continuous evolution.",
-    text: "AI models improve. Technologies change. Business requirements shift. Your architecture brings these moving parts together through modular structures, explicit interfaces, and reusable capabilities. Add new technologies and capabilities without redesigning your entire organization around each new tool.",
-    href: "/expertise",
-    cta: "Discover Adaptive Architecture",
-    film: "logistics",
-    points: [
-      "Modular organizational and digital design",
-      "Extensible integrations",
-      "Explicit business data models",
-      "Governed AI agent specifications",
-      "A foundation for continuous transformation",
-    ],
+    title: "A foundation built to accommodate change.",
+    text: "New tools and AI capabilities attach to named objects and interfaces. You do not redesign the company around each new product.",
+    points: ["Retained systems", "Explicit interfaces", "Governed agent specs", "What not to migrate"],
+    view: "systems" as const,
   },
 ] as const;
 
-const SPACE = [
-  {
-    title: "Enterprise Map",
-    text: "Understand how your functions, processes, systems, and decisions connect.",
-  },
-  {
-    title: "Architecture Studio",
-    text: "Explore the organizational, operational, data, technology, AI, and security layers of your future enterprise.",
-  },
-  {
-    title: "Transformation Roadmap",
-    text: "Follow the implementation sequence, priorities, dependencies, and decision milestones.",
-  },
-  {
-    title: "Decision Center",
-    text: "Review outstanding decisions, assumptions, constraints, and supporting information.",
-  },
-] as const;
-
-const INCLUDED = [
-  "Enterprise analysis",
-  "Target organizational architecture",
-  "Process and value chain design",
-  "Data and digital systems architecture",
-  "AI agent and automation specifications",
-  "Security and governance principles",
-  "Prioritized implementation roadmap",
-  "Personalized EXIOR Space",
+const FAQ = [
+  ["Is this a generic AI report?", "No. The plan is built from your dossier: how you sell, who decides, which systems hold the truth, and what you will not change."],
+  ["Does $499 include implementation?", "No. The plan, the architecture and the EXIOR Space are included. Software implementation, migration and running agents are a separate engagement."],
+  ["When do the 14 days begin?", "When the intake dossier is complete. Not at payment, and not on a half-filled form."],
+  ["Can my team implement it?", "Yes. The roadmap is written so you can execute it without us, or with a partner you choose."],
+  ["Does it lock us to a platform?", "No. EXIOR is independent of any single software vendor. Existing systems are kept where they should be kept."],
 ] as const;
 
 function Reveal({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
@@ -118,10 +64,10 @@ function Reveal({ children, className, delay = 0 }: { children: ReactNode; class
   return (
     <motion.div
       className={className}
-      initial={reduce ? false : { opacity: 0, y: 18 }}
+      initial={reduce ? false : { opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay, ease }}
+      transition={{ duration: 0.55, delay, ease }}
     >
       {children}
     </motion.div>
@@ -133,69 +79,51 @@ function Home() {
   return (
     <Shell>
       <main>
-        <section className="mx-auto grid max-w-6xl items-center gap-14 px-5 pb-20 pt-16 md:pt-24 lg:grid-cols-2">
+        <section className="mx-auto grid max-w-6xl items-center gap-12 px-5 pb-16 pt-16 md:pt-24 lg:grid-cols-[1fr_1.15fr]">
           <div>
-            <motion.p
-              className="text-sm text-muted"
-              initial={reduce ? false : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease }}
-            >
-              EXIOR / ENTERPRISE TRANSFORMATION
+            <motion.p className="text-xs tracking-[0.16em] text-muted" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }}>
+              ENTERPRISE TRANSFORMATION ARCHITECTURE
             </motion.p>
             <motion.h1
-              className="mt-4 text-4xl font-medium tracking-[-0.035em] md:text-6xl md:leading-[1.02]"
-              initial={reduce ? false : { opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.05, ease }}
-            >
-              Architect the next generation of your enterprise.
-            </motion.h1>
-            <motion.p
-              className="mt-6 max-w-xl text-lg leading-relaxed text-muted"
-              initial={reduce ? false : { opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.12, ease }}
-            >
-              Transform how your business operates with a unified architecture connecting strategy, organization, processes, data, technology, and artificial intelligence.
-            </motion.p>
-            <motion.p
-              className="mt-4 max-w-xl leading-relaxed text-muted"
-              initial={reduce ? false : { opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.16, ease }}
-            >
-              EXIOR turns the complexity of enterprise transformation into one actionable blueprint — designed around your company, your existing systems, and your business priorities.
-            </motion.p>
-            <motion.div
-              className="mt-8 flex flex-col gap-3 sm:flex-row"
+              className="mt-4 text-4xl font-medium tracking-[-0.04em] md:text-6xl"
               initial={reduce ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.22, ease }}
+              transition={{ duration: 0.5, ease }}
             >
+              Transform your enterprise. Start with the blueprint.
+            </motion.h1>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+              EXIOR analyzes your business and designs a future-ready organization, connected digital architecture, and prioritized AI integration roadmap. Every part of your transformation, connected in one actionable plan.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link to="/offre" className="inline-flex items-center justify-center rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
-                Get Your Transformation Plan
+                Get My Transformation Plan — $499
               </Link>
-              <a href="#blueprint" className="inline-flex items-center justify-center rounded-full border border-line px-5 py-3 text-sm text-muted">
-                Explore the EXIOR Blueprint
+              <a href="#espace" className="inline-flex items-center justify-center rounded-full border border-line px-5 py-3 text-sm text-muted">
+                Explore a Sample Blueprint
               </a>
-            </motion.div>
-            <p className="mt-5 text-sm text-muted">$499 · Delivered in 14 days</p>
+            </div>
+            <p className="mt-5 text-sm text-muted">Your personalized plan. $499. Delivered in 14 days after complete intake.</p>
+            <p className="mt-2 text-xs text-faint">Enterprise-wide analysis · Target architecture · Prioritized roadmap · Personalized EXIOR Space</p>
           </div>
-          <SpaceFrame />
+          <div id="espace">
+            <SpaceStage />
+            <p className="mt-3 text-xs text-faint">Inside EXIOR Space — illustrative enterprise transformation.</p>
+          </div>
         </section>
 
-        <section id="blueprint" className="border-y border-line">
+        <section className="border-y border-line">
           <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-            <h2 className="max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">
-              One business. One architecture. A clear path forward.
-            </h2>
+            <p className="text-xs tracking-[0.16em] text-muted">ONE CONNECTED ENTERPRISE</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">Design the business. Connect every layer.</h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
-              EXIOR brings the disciplines behind enterprise transformation into a single, coordinated plan. From organizational design to AI agents, every component is connected to the way your business creates value.
+              Your company runs on relationships between people, processes, information and systems. EXIOR maps those relationships and defines an architecture in which each component supports the rest.
             </p>
-            <div className="mt-10">
-              <SpaceFrame initial="layers" />
-            </div>
+            <ul className="mt-8 grid gap-3 md:grid-cols-3">
+              {["From strategy to execution.", "From fragmented data to defined ownership.", "From isolated AI experiments to governed capabilities."].map((t) => (
+                <li key={t} className="rounded-2xl border border-line px-5 py-4 text-sm">{t}</li>
+              ))}
+            </ul>
           </div>
         </section>
 
@@ -203,157 +131,73 @@ function Home() {
           <section key={pillar.kicker} className="border-b border-line">
             <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-2 md:py-24">
               <Reveal>
-                <p className="text-sm text-muted">{pillar.kicker}</p>
+                <p className="text-xs tracking-[0.16em] text-muted">{pillar.kicker}</p>
                 <h2 className="mt-3 text-3xl font-medium tracking-[-0.03em] md:text-4xl">{pillar.title}</h2>
                 <p className="mt-5 leading-relaxed text-muted">{pillar.text}</p>
-                <Link to={pillar.href} className="mt-6 inline-flex text-sm font-medium text-fg">
-                  {pillar.cta}
-                </Link>
+                <ul className="mt-6 space-y-2 text-sm">
+                  {pillar.points.map((p) => <li key={p} className="text-muted">— {p}</li>)}
+                </ul>
               </Reveal>
               <Reveal delay={0.06}>
-                <ul className="divide-y divide-line rounded-2xl border border-line">
-                  {pillar.points.map((point) => (
-                    <li key={point} className="px-5 py-4 text-sm leading-relaxed">
-                      {point}
-                    </li>
-                  ))}
-                </ul>
+                <SpaceStage initial={pillar.view} />
               </Reveal>
             </div>
           </section>
         ))}
 
-        <section id="espace" className="border-b border-line">
+        <section className="border-b border-line">
           <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
-            <Reveal>
-              <p className="text-sm text-muted">Your EXIOR Space</p>
-              <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">
-                Your entire transformation. One connected environment.
-              </h2>
-              <p className="mt-5 max-w-2xl leading-relaxed text-muted">
-                Explore your target architecture, review transformation priorities, understand dependencies, and keep critical decisions visible. Your EXIOR Space brings the complete blueprint together in a structured digital environment.
-              </p>
-            </Reveal>
-            <div className="mt-10">
-              <SpaceFrame />
-            </div>
-            <div className="mt-12 grid gap-4 md:grid-cols-2">
-              {SPACE.map((item, i) => (
-                <Reveal key={item.title} delay={i * 0.05}>
-                  <article className="h-full rounded-2xl border border-line bg-surface/40 p-6">
-                    <h3 className="text-xl font-medium tracking-tight">{item.title}</h3>
-                    <p className="mt-3 leading-relaxed text-muted">{item.text}</p>
-                  </article>
-                </Reveal>
-              ))}
+            <p className="text-xs tracking-[0.16em] text-muted">SAMPLE COMPANY</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">Meridian, before and after the architecture.</h2>
+            <p className="mt-5 max-w-2xl text-muted">
+              {MERIDIAN.rule} This is an illustrative company. The plan proposes the architecture. It does not operate it.
+            </p>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              <div className="rounded-2xl border border-line p-5">
+                <p className="text-xs text-faint">Current</p>
+                <p className="mt-3 text-sm">Quotes go out before capacity is checked. Production is an 11-day constraint. Stock is not one number. Shipment waits.</p>
+              </div>
+              <div className="rounded-2xl border border-accent-fill/40 p-5">
+                <p className="text-xs text-faint">Target architecture</p>
+                <p className="mt-3 text-sm">CRM reads the capacity signal. Price and release stay with a person. One stock figure. Invoice follows the released shipment.</p>
+              </div>
             </div>
           </div>
         </section>
 
         <section className="border-b border-line">
           <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
-            <Reveal>
-              <p className="text-sm text-muted">The Outcome</p>
-              <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">
-                From fragmented operations to a connected enterprise.
-              </h2>
-            </Reveal>
-            <div className="mt-12 grid gap-10 md:grid-cols-3">
-              {[
-                [
-                  "Today",
-                  "Your business operates across teams, systems, processes, and information that have evolved independently. Critical decisions depend on incomplete visibility. Operational constraints surface late. New technologies are introduced without a shared architectural direction.",
-                ],
-                [
-                  "Day 14",
-                  "You receive a complete transformation blueprint connecting your business model, organization, value chain, digital systems, AI opportunities, and security requirements. You know what needs to change, why it matters, and how to sequence the work.",
-                ],
-                [
-                  "Your First Transformation Cycle",
-                  "Put the highest-priority initiatives into action. Focus implementation on a measurable business process, operational constraint, or organizational capability. The transformation roadmap gives you a clear starting point and a structured direction for the work ahead.",
-                ],
-              ].map(([title, text], i) => (
-                <Reveal key={title} delay={i * 0.06}>
-                  <h3 className="text-xl font-medium tracking-tight">{title}</h3>
-                  <p className="mt-3 leading-relaxed text-muted">{text}</p>
-                </Reveal>
-              ))}
+            <p className="text-xs tracking-[0.16em] text-muted">FOURTEEN DAYS</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">The clock starts when the dossier is complete.</h2>
+            <div className="mt-8">
+              <Timeline />
             </div>
-          </div>
-        </section>
-
-        <section className="border-b border-line">
-          <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-2 md:py-24">
-            <div>
-              <p className="text-sm text-muted">See the transformation</p>
-              <h2 className="mt-3 text-3xl font-medium tracking-[-0.03em]">See how an enterprise comes together.</h2>
-              <p className="mt-5 leading-relaxed text-muted">
-                Explore how EXIOR connects business operations, information, systems, decisions, and intelligent capabilities in a single target architecture.
-              </p>
-              <h3 className="mt-8 text-lg font-medium">Current enterprise</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
-                Disconnected systems. Fragmented decisions. Customer demand, internal capacity, operational planning, and financial information often move through separate processes. Dependencies become visible only when something goes wrong.
-              </p>
-              <p className="mt-4 text-sm text-fg">Customer request → Sales → Planning → Operations → Fulfillment → Finance</p>
-              <h3 className="mt-8 text-lg font-medium">Target enterprise</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
-                One connected value chain. Information dependencies become explicit, responsibilities are defined, and selected activities are structured for automation.
-              </p>
-            </div>
-            <div>
-              <SpaceFrame initial="decisions" />
-              <h3 className="mt-8 text-lg font-medium">Agent governance</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">
-                Intelligent execution. Defined boundaries. An agent can be authorized to retrieve an order status without being authorized to change a commercial price. A document-processing agent can prepare a file for review without making the final approval decision.
-              </p>
-              <h3 className="mt-8 text-lg font-medium">Decision visibility</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">
-                Your EXIOR Blueprint makes critical assumptions, implementation dependencies, and outstanding decisions visible. See which changes unlock the next stage and which conditions must be satisfied before implementation.
-              </p>
-            </div>
+            <Link to="/methode" className="mt-6 inline-flex text-sm text-fg">See how the plan is built</Link>
           </div>
         </section>
 
         <section className="mx-auto max-w-6xl px-5 py-20 md:py-28">
           <div className="grid gap-12 md:grid-cols-2">
             <div>
-              <p className="text-sm text-muted">Get Started</p>
-              <h2 className="mt-3 text-3xl font-medium tracking-[-0.03em] md:text-5xl">
-                Your enterprise transformation starts with a blueprint.
-              </h2>
-              <p className="mt-4 text-sm text-muted">EXIOR Transformation Plan</p>
-              <p className="mt-2 text-6xl font-medium tracking-[-0.04em]">$499</p>
-              <p className="mt-3 max-w-md text-muted">
-                One-time payment. A personalized enterprise transformation architecture, delivered in 14 days after your complete business dossier is received.
-              </p>
+              <p className="text-xs tracking-[0.16em] text-muted">THE PLAN</p>
+              <h2 className="mt-3 text-3xl font-medium tracking-[-0.03em] md:text-5xl">Your enterprise transformation starts with a blueprint.</h2>
+              <p className="mt-4 text-6xl font-medium tracking-[-0.04em]">$499</p>
+              <p className="mt-3 max-w-md text-muted">One-time. Delivered in 14 days after complete intake. Technical deployment is a separate engagement.</p>
               <Link to="/offre" className="mt-8 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
-                Get Your Transformation Plan — $499
+                Get My Transformation Plan — $499
               </Link>
-              <p className="mt-4 text-sm text-muted">Technical implementation is a separate engagement.</p>
             </div>
-            <ul className="divide-y divide-line self-center rounded-2xl border border-line">
-              {INCLUDED.map((item) => (
-                <li key={item} className="px-5 py-3.5 text-sm">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section className="border-t border-line">
-          <div className="mx-auto max-w-3xl px-5 py-20 text-center md:py-28">
-            <p className="text-sm text-muted">EXIOR TRANSFORMATION PLAN</p>
-            <h2 className="mt-4 text-3xl font-medium tracking-[-0.03em] md:text-5xl">
-              The next version of your enterprise starts with a clear architecture.
-            </h2>
-            <p className="mx-auto mt-5 max-w-xl text-muted">
-              Your organization, processes, data, systems, and AI capabilities — designed to work together. A personalized transformation blueprint. A prioritized roadmap. Your own EXIOR Space.
-            </p>
-            <p className="mt-6 text-sm text-muted">$499 · Delivered in 14 days. One-time payment.</p>
-            <Link to="/offre" className="mt-8 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
-              Get Your Transformation Plan — $499
-            </Link>
+            <div>
+              <h3 className="text-lg font-medium">Before you order</h3>
+              <dl className="mt-4 divide-y divide-line rounded-2xl border border-line">
+                {FAQ.map(([q, a]) => (
+                  <div key={q} className="px-5 py-4">
+                    <dt className="text-sm font-medium">{q}</dt>
+                    <dd className="mt-2 text-sm text-muted">{a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
         </section>
       </main>

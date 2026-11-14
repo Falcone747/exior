@@ -210,53 +210,8 @@ export function ValueChain() {
   );
 }
 
-export const voices = [
-  {
-    quote: "En quatorze jours, j’ai vu l’entreprise entière. Pas un outil de plus : l’ordre dans lequel on change.",
-    name: "Camille R.",
-    role: "Directrice générale",
-    meta: "Services B2B · 90 personnes",
-    gain: "Une semaine de moins sur le cycle devis–commande, avant 90 jours.",
-  },
-  {
-    quote: "On empilait les logiciels. EXIOR a dit quoi relier, quoi garder, et ce qu’il ne fallait surtout pas automatiser.",
-    name: "Marc D.",
-    role: "Président",
-    meta: "Industrie · 160 personnes",
-    gain: "Le goulot d’atelier est devenu un chiffre, plus une surprise.",
-  },
-  {
-    quote: "La cybersécurité et les agents sont dans le même plan. Enfin un sujet, pas deux prestataires.",
-    name: "Inès K.",
-    role: "Directrice des systèmes",
-    meta: "Distribution · 40 sites",
-    gain: "Les accès ont été réduits avant d’ouvrir le moindre agent.",
-  },
-  {
-    quote: "Je croyais qu’il fallait un an de conseil. J’ai payé 499 dollars. J’ai décidé dans la quinzaine.",
-    name: "Julien P.",
-    role: "Fondateur",
-    meta: "Négoce · 35 personnes",
-    gain: "Les ruptures se voient avant le client.",
-  },
-] as const;
+export const voices = [] as const;
 
 export function Voices() {
-  return (
-    <div className="grid gap-4 md:grid-cols-2">
-      {voices.map((item) => (
-        <figure key={item.name} className="flex flex-col rounded-lg border border-line bg-surface p-6">
-          <blockquote className="font-serif text-xl leading-snug">« {item.quote} »</blockquote>
-          <figcaption className="mt-6 flex items-end justify-between gap-4">
-            <div>
-              <p className="text-sm font-semibold">{item.name}</p>
-              <p className="text-sm text-muted">{item.role}</p>
-              <p className="text-xs uppercase tracking-widest text-faint">{item.meta}</p>
-            </div>
-          </figcaption>
-          <p className="mt-4 border-t border-line pt-4 text-sm text-accent">{item.gain}</p>
-        </figure>
-      ))}
-    </div>
-  );
+  return null;
 }

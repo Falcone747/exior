@@ -64,7 +64,7 @@ export function SiteHeader() {
             to="/offre"
             className="hidden rounded-full bg-accent-fill px-4 py-2 text-sm font-medium text-accent-ink lg:inline-flex"
           >
-            Get Started — $499
+            Get My Transformation Plan — $499
           </Link>
           <button
             type="button"
@@ -95,7 +95,7 @@ export function SiteHeader() {
               className="mt-4 inline-flex justify-center rounded-full bg-accent-fill px-4 py-3 text-sm font-medium text-accent-ink"
               onClick={() => setOpen(false)}
             >
-              Get Started — $499
+              Get My Transformation Plan — $499
             </Link>
           </div>
         </div>

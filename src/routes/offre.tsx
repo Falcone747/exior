@@ -122,8 +122,8 @@ const FAQ = [
     a: "Yes. Relevant stakeholders can help clarify systems, information, financial constraints, and operational requirements. Their involvement supports the existing scope of the transformation plan.",
   },
   {
-    q: "Can EXIOR work with companies outside France?",
-    a: "The applicability of the engagement depends on the company's operating context and the information required to address its relevant constraints. Country-specific regulatory and legal questions may require qualified local advisers.",
+    q: "Can EXIOR work with companies outside the United States?",
+    a: "Yes. The plan is designed from your operating context. Country-specific regulatory questions are assessed in the dossier and may require your own local advisers. We do not assert universal compliance.",
   },
   {
     q: "What happens after delivery?",
@@ -164,7 +164,7 @@ function Offre() {
             Your next enterprise. Designed in 14 days.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-            Everything you need to understand your current organization, design its future architecture, and move toward implementation with a clear sequence of priorities.
+            A personalized transformation plan. $499, once. Delivered in 14 days after the complete dossier. Technical deployment is separate.
           </p>
           <p className="mt-6 text-sm text-muted">$499 · One-time payment</p>
           <a href="#profile" className="mt-6 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
