@@ -77,12 +77,11 @@ function PlanCard() {
   const reduce = useReducedMotion();
   return (
     <motion.div
-      className="relative overflow-hidden rounded-2xl border border-line bg-surface/80 shadow-[0_40px_120px_rgba(0,0,0,0.45)] backdrop-blur"
+      className="relative overflow-hidden rounded-2xl border border-accent-fill/50 bg-surface/80 shadow-[0_40px_120px_rgba(0,0,0,0.45)] backdrop-blur"
       initial={reduce ? false : { opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.15, ease }}
     >
-      <div className="pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-[radial-gradient(circle,rgba(0,196,214,0.35),transparent_70%)]" />
       <div className="flex items-center justify-between border-b border-line px-5 py-4">
         <div className="flex items-center gap-3">
           <img src="/visuals/logo.jpg" alt="" className="size-8 object-contain" />
@@ -91,7 +90,7 @@ function PlanCard() {
             <p className="text-xs text-faint">Espace EXIOR · J14</p>
           </div>
         </div>
-        <span className="rounded-full border border-accent/40 px-2.5 py-1 text-[11px] text-accent">Livrable</span>
+        <span className="rounded-full border border-accent-fill/70 px-2.5 py-1 text-[11px] text-fg">Livrable</span>
       </div>
       <ul>
         {PLAN.map((row, i) => (
@@ -184,7 +183,7 @@ function Space() {
             {steps.map((step, i) => (
               <li key={step} className="flex items-center gap-3 text-sm">
                 <motion.span
-                  className={i === 2 ? "size-2 rounded-full bg-accent-fill" : "size-2 rounded-full bg-line"}
+                  className={i === 2 ? "size-2 rounded-full bg-fg" : "size-2 rounded-full bg-line"}
                   animate={i === 2 && !reduce ? { scale: [1, 1.6, 1] } : undefined}
                   transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
                 />
@@ -210,9 +209,6 @@ function Home() {
     <Shell>
       <main>
         <section className="relative overflow-hidden">
-          <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-1/2 top-[-8rem] h-[36rem] w-[46rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,196,214,0.18),transparent_68%)]" />
-          </div>
           <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-5 pb-20 pt-16 md:pt-24 lg:grid-cols-2">
             <div>
               <motion.p
@@ -323,9 +319,7 @@ function Home() {
                 <Reveal key={step.when} delay={i * 0.08}>
                   <div className="relative">
                     <motion.span
-                      className="relative z-10 block size-2.5 rounded-full bg-accent-fill"
-                      animate={reduce ? undefined : { boxShadow: ["0 0 0 0 rgba(0,196,214,0.0)", "0 0 0 8px rgba(0,196,214,0.18)", "0 0 0 0 rgba(0,196,214,0)"] }}
-                      transition={{ duration: 2.2, repeat: Infinity, delay: i * 0.3 }}
+                      className="relative z-10 block size-2.5 rounded-full bg-fg"
                     />
                     <p className="mt-5 text-sm text-accent">{step.when}</p>
                     <h3 className="mt-2 text-2xl font-medium tracking-tight">{step.title}</h3>

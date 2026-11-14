@@ -30,7 +30,7 @@ export function JourneyFilm() {
       onMouseLeave={() => setPaused(false)}
     >
       <div
-        className="pointer-events-none absolute inset-y-0 w-64 bg-[radial-gradient(circle_at_center,rgba(0,240,255,0.28),transparent_68%)] transition-[left] duration-700 ease-out"
+        className="pointer-events-none absolute inset-y-0 w-64 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.28),transparent_68%)] transition-[left] duration-700 ease-out"
         style={{ left: `calc(${(index / (STEPS.length - 1)) * 100}% - 8rem)` }}
       />
       <div className="relative px-5 py-7 md:px-8 md:py-9">
@@ -47,7 +47,7 @@ export function JourneyFilm() {
         <div className="relative mt-8 h-20">
           <div className="absolute left-3 right-3 top-1/2 h-px -translate-y-1/2 bg-line" />
           <div
-            className="absolute left-3 top-1/2 h-px -translate-y-1/2 bg-accent-fill shadow-[0_0_12px_rgba(0,240,255,0.9)] transition-[width] duration-700 ease-in-out"
+            className="absolute left-3 top-1/2 h-px -translate-y-1/2 bg-fg shadow-[0_0_12px_rgba(255,255,255,0.9)] transition-[width] duration-700 ease-in-out"
             style={{ width: `calc((100% - 1.5rem) * ${index / (STEPS.length - 1)})` }}
           />
           <div
@@ -56,7 +56,7 @@ export function JourneyFilm() {
           >
             <span className="signal-ring" />
             <span className="signal-ring signal-ring-late" />
-            <span className="relative block size-3.5 rounded-full bg-accent-fill shadow-[0_0_22px_6px_rgba(0,240,255,0.85)]" />
+            <span className="relative block size-3.5 rounded-full bg-fg shadow-[0_0_22px_6px_rgba(255,255,255,0.85)]" />
           </div>
           <ol className="relative grid h-full grid-cols-6">
             {STEPS.map((step, i) => (
@@ -83,7 +83,7 @@ export function JourneyFilm() {
             <span className="mb-1 block text-[10px] uppercase tracking-[0.18em] text-faint">Sans cadre</span>
             {current.before}
           </p>
-          <p className="slide-in rounded-xl border border-accent/70 bg-surface px-4 py-4 text-sm leading-relaxed text-fg shadow-[0_0_0_1px_rgba(0,240,255,0.35),0_16px_40px_rgba(0,0,0,0.35)]">
+          <p className="slide-in rounded-xl border border-line bg-surface px-4 py-4 text-sm leading-relaxed text-fg shadow-[0_0_0_1px_rgba(255,255,255,0.35),0_16px_40px_rgba(0,0,0,0.35)]">
             <span className="mb-1 block text-[10px] uppercase tracking-[0.18em] text-accent">EXIOR intervient</span>
             {current.act}
           </p>
@@ -180,7 +180,7 @@ export function ValueChain() {
               onClick={() => setId(item.id)}
               className={
                 item.id === current.id
-                  ? "min-h-11 rounded-md bg-accent-fill px-2 py-3 text-sm font-medium text-accent-ink"
+                  ? "min-h-11 rounded-md bg-fg px-2 py-3 text-sm font-medium text-accent-ink"
                   : "min-h-11 rounded-md border border-line px-2 py-3 text-sm text-muted"
               }
             >
@@ -191,7 +191,7 @@ export function ValueChain() {
         </div>
         <div className="mt-4 h-1 overflow-hidden rounded-full bg-line">
           <div
-            className="chain-run h-full bg-accent-fill"
+            className="chain-run h-full bg-fg"
             style={{ width: `${((index + 1) / LINKS.length) * 100}%` }}
           />
         </div>
@@ -200,7 +200,7 @@ export function ValueChain() {
             <span className="block text-xs uppercase tracking-widest text-faint">Avant</span>
             <span className="mt-2 block text-base text-fg">{current.now}</span>
           </p>
-          <p className="rounded-md border border-accent/50 bg-surface p-4 text-sm leading-relaxed">
+          <p className="rounded-md border border-line bg-surface p-4 text-sm leading-relaxed">
             <span className="block text-xs uppercase tracking-widest text-accent">Après EXIOR</span>
             <span className="mt-2 block text-base">{current.next}</span>
           </p>

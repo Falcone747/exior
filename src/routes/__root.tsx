@@ -16,7 +16,7 @@ export const Route = createRootRoute({
         content:
           "EXIOR conçoit le plan de transformation de votre entreprise : organisation, processus, données, IA, veille et feuille de route. 499 $, livré en 14 jours.",
       },
-      { name: "theme-color", content: "#05080e" },
+      { name: "theme-color", content: "#090a0b" },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
