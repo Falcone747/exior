@@ -41,14 +41,19 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
-        <Link to="/" className="flex shrink-0 items-center gap-1.5" onClick={() => setOpen(false)}>
-          <img src="/visuals/logo-transparent.png" alt="" className="size-8 object-contain" />
-          <span
-            className="text-[15px] font-medium leading-none tracking-[-0.04em] text-fg"
-            style={{ fontFamily: '"Inter Tight", Inter, ui-sans-serif, system-ui, sans-serif' }}
-          >
-            Exior
-          </span>
+        <Link to="/" className="flex shrink-0 items-center gap-2" onClick={() => setOpen(false)} aria-label="Exior">
+          <img src="/visuals/logo-mark.png" alt="" className="size-7 object-contain" />
+          <svg viewBox="0 0 108 28" className="h-5 w-auto text-fg" aria-hidden="true">
+            <g fill="currentColor">
+              <path d="M0 2h16v3.2H3.4v6.2h10.2v3.1H3.4V22.8H16V26H0V2z" />
+              <path d="M22.5 3.2l6.6 10.2 6.6-10.2h4.1L29.2 16.4 40.2 26h-4.2l-7-9.6-6.9 9.6h-4.1l10.9-9.6L18.4 3.2h4.1z" />
+              <path d="M46 8.4h3.4V26H46V8.4z" />
+              <rect x="46" y="2" width="3.4" height="3.4" />
+              <path d="M70.5 26V8.4h3.4v6.2c2.4-1.6 4.6-2.2 7.2-2.2 4.2 0 6.6 2.2 6.6 5.6V26h-3.4v-7.4c0-2-1.2-3.1-3.4-3.1-2.4 0-4 1.2-4 3.4V26h-3.4z" />
+            </g>
+            <circle cx="60.5" cy="15.2" r="8.2" fill="none" stroke="currentColor" strokeWidth="3.1" />
+            <circle cx="60.5" cy="15.2" r="2.5" fill="#00f0ff" />
+          </svg>
         </Link>
         <nav className="hidden items-center gap-4 xl:flex">
           {NAV.map((item) => {
@@ -135,7 +140,10 @@ export function SiteFooter() {
     <footer className="border-t border-line">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-12">
         <div className="md:col-span-4">
-          <p className="text-[15px] font-medium tracking-[-0.04em]" style={{ fontFamily: '"Inter Tight", Inter, ui-sans-serif, system-ui, sans-serif' }}>Exior</p>
+          <p className="flex items-center gap-2 text-fg">
+            <img src="/visuals/logo-mark.png" alt="" className="size-6 object-contain" />
+            <span className="text-sm font-medium tracking-[-0.03em]">Exior</span>
+          </p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
             Enterprise transformation architecture connecting strategy, organization, operations, data, technology, and AI.
           </p>
