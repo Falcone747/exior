@@ -41,9 +41,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
-        <Link to="/" className="flex shrink-0 items-center gap-2.5" onClick={() => setOpen(false)}>
-          <img src="/visuals/logo-transparent.png" alt="" className="size-10 object-contain" />
-          <span className="text-lg font-semibold tracking-tight">EXIOR</span>
+        <Link to="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)} aria-label="Exior">
+          <img src="/visuals/lockup.png" alt="Exior" className="h-8 w-auto object-contain" />
         </Link>
         <nav className="hidden items-center gap-4 xl:flex">
           {NAV.map((item) => {
