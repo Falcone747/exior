@@ -28,6 +28,7 @@ const VISUALS = {
 } as const;
 
 const PILLARS = [
+  {
     kicker: "Discover",
     title: "See where your business is being held back.",
     text: "We map how work moves across teams and systems, name the constraint that matters, and connect it to your operating priorities.",
