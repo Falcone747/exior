@@ -41,11 +41,9 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
-        <Link to="/" className="flex shrink-0 items-center gap-2" onClick={() => setOpen(false)} aria-label="Exior">
-          <img src="/visuals/logo-mark.png" alt="" className="size-7 object-contain" />
-          <span className="text-[17px] font-medium leading-none tracking-[-0.03em] text-[#f7f8f8]" style={{ fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif" }}>
-            Exior
-          </span>
+        <Link to="/" className="flex shrink-0 items-center gap-2.5" onClick={() => setOpen(false)}>
+          <img src="/visuals/logo-transparent.png" alt="" className="size-10 object-contain" />
+          <span className="text-lg font-semibold tracking-tight">EXIOR</span>
         </Link>
         <nav className="hidden items-center gap-4 xl:flex">
           {NAV.map((item) => {
@@ -132,10 +130,7 @@ export function SiteFooter() {
     <footer className="border-t border-line">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-12">
         <div className="md:col-span-4">
-          <p className="flex items-center gap-2">
-            <img src="/visuals/logo-mark.png" alt="" className="size-6 object-contain" />
-            <span className="text-[15px] font-medium tracking-[-0.03em] text-[#f7f8f8]" style={{ fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif" }}>Exior</span>
-          </p>
+          <p className="text-lg font-semibold">EXIOR — Transform Your Enterprise.</p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
             Enterprise transformation architecture connecting strategy, organization, operations, data, technology, and AI.
           </p>
