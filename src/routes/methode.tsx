@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell, Kicker } from "@/components/site/chrome";
-import { Reel } from "@/components/site/media";
+import { Still } from "@/components/site/media";
 
 export const Route = createFileRoute("/methode")({
   head: () => ({
@@ -89,7 +89,7 @@ function Methode() {
             EXIOR follows a structured methodology connecting business analysis, organizational design, technology architecture, AI opportunities, and transformation planning. Your complete business dossier starts the 14-day delivery period.
           </p>
           <div className="mt-10 max-w-4xl">
-            <Reel src="/media/milestones.mp4" poster="/media/milestones.jpg" label="The fourteen-day sequence" />
+            <Still src="/media/redesign.jpg" alt="The company model after the path is redesigned" />
           </div>
         </section>
         <section className="border-t border-line">

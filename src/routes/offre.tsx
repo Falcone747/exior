@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { Shell, Kicker } from "@/components/site/chrome";
 import { FaqList } from "@/components/site/ui";
-import { Reel } from "@/components/site/media";
+import { Still } from "@/components/site/media";
 
 export const Route = createFileRoute("/offre")({
   head: () => ({
@@ -171,7 +171,7 @@ function Offre() {
             Get Your Transformation Plan
           </a>
           <div className="mt-10 max-w-4xl">
-            <Reel src="/media/model.mp4" poster="/media/model.jpg" label="The architecture you receive" />
+            <Still src="/media/model.jpg" alt="The company as it is modeled on day one" />
           </div>
         </section>
 

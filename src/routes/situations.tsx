@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell, Kicker } from "@/components/site/chrome";
-import { Reel } from "@/components/site/media";
+import { Still } from "@/components/site/media";
 
 export const Route = createFileRoute("/situations")({
   head: () => ({
@@ -131,7 +131,7 @@ function SituationsPage() {
             Every industry has its own processes, constraints, operating rhythms, and sources of value. EXIOR identifies where your business can improve coordination, reduce operational friction, and introduce intelligent capabilities.
           </p>
           <div className="mt-10 max-w-4xl">
-            <Reel src="/media/logistics.mp4" poster="/media/logistics.jpg" label="An operating floor" />
+            <Still src="/media/floor.jpg" alt="Office, shop and dock in one operating flow" />
           </div>
           <Link to="/offre" className="mt-8 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
             Explore Use Cases
