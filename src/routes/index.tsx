@@ -2,8 +2,7 @@ import type { ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
 import { Shell } from "@/components/site/chrome";
-import { Still } from "@/components/site/media";
-import { EnterpriseModel } from "@/components/site/enterprise-model";
+import { SpaceFrame } from "@/components/site/space-frame";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -183,7 +182,7 @@ function Home() {
             </motion.div>
             <p className="mt-5 text-sm text-muted">$499 · Delivered in 14 days</p>
           </div>
-          <EnterpriseModel />
+          <SpaceFrame />
         </section>
 
         <section id="blueprint" className="border-y border-line">
@@ -195,7 +194,7 @@ function Home() {
               EXIOR brings the disciplines behind enterprise transformation into a single, coordinated plan. From organizational design to AI agents, every component is connected to the way your business creates value.
             </p>
             <div className="mt-10">
-              <Still src="/media/meeting.jpg" alt="The model reviewed with the people who run the company" />
+              <SpaceFrame initial="layers" />
             </div>
           </div>
         </section>
@@ -212,16 +211,7 @@ function Home() {
                 </Link>
               </Reveal>
               <Reveal delay={0.06}>
-                {pillar.kicker === "Transform" ? (
-                  <EnterpriseModel mode="target" />
-                ) : pillar.kicker === "Discover" ? (
-                  <EnterpriseModel mode="today" />
-                ) : pillar.kicker === "Architect" ? (
-                  <Still src="/media/layers.jpg" alt="The layers of the target architecture" />
-                ) : (
-                  <Still src="/media/logistics.jpg" alt="A flow that can take a new capability without being rebuilt" />
-                )}
-                <ul className="mt-4 divide-y divide-line rounded-2xl border border-line">
+                <ul className="divide-y divide-line rounded-2xl border border-line">
                   {pillar.points.map((point) => (
                     <li key={point} className="px-5 py-4 text-sm leading-relaxed">
                       {point}
@@ -245,7 +235,7 @@ function Home() {
               </p>
             </Reveal>
             <div className="mt-10">
-              <Still src="/media/office.jpg" alt="The EXIOR Space, a private working room" />
+              <SpaceFrame />
             </div>
             <div className="mt-12 grid gap-4 md:grid-cols-2">
               {SPACE.map((item, i) => (
@@ -311,7 +301,7 @@ function Home() {
               </p>
             </div>
             <div>
-              <EnterpriseModel mode="today" />
+              <SpaceFrame initial="decisions" />
               <h3 className="mt-8 text-lg font-medium">Agent governance</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 Intelligent execution. Defined boundaries. An agent can be authorized to retrieve an order status without being authorized to change a commercial price. A document-processing agent can prepare a file for review without making the final approval decision.
@@ -320,9 +310,6 @@ function Home() {
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 Your EXIOR Blueprint makes critical assumptions, implementation dependencies, and outstanding decisions visible. See which changes unlock the next stage and which conditions must be satisfied before implementation.
               </p>
-              <div className="mt-6">
-                <Still src="/media/decision.jpg" alt="A commercial decision that stays with a person" />
-              </div>
             </div>
           </div>
         </section>
