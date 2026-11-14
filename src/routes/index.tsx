@@ -2,7 +2,8 @@ import type { ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
 import { Shell } from "@/components/site/chrome";
-import { Reel, Still } from "@/components/site/media";
+import { Still } from "@/components/site/media";
+import { EnterpriseModel } from "@/components/site/enterprise-model";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -182,12 +183,7 @@ function Home() {
             </motion.div>
             <p className="mt-5 text-sm text-muted">$499 · Delivered in 14 days</p>
           </div>
-          <Reel
-            src="/media/model.mp4"
-            poster="/media/model.jpg"
-            label="Modeling the company: the order path and the bottleneck"
-            caption="The company, modeled. The cyan thread is the bottleneck between the shop and the dock."
-          />
+          <EnterpriseModel />
         </section>
 
         <section id="blueprint" className="border-y border-line">
@@ -217,14 +213,9 @@ function Home() {
               </Reveal>
               <Reveal delay={0.06}>
                 {pillar.kicker === "Transform" ? (
-                  <Reel
-                    src="/media/redesign.mp4"
-                    poster="/media/redesign.jpg"
-                    label="The same company model, redesigned into one path"
-                    caption="The same model, reordered. Office, shop, warehouse, truck. One path."
-                  />
+                  <EnterpriseModel mode="target" />
                 ) : pillar.kicker === "Discover" ? (
-                  <Still src="/media/factory.jpg" alt="The line as it runs today" />
+                  <EnterpriseModel mode="today" />
                 ) : pillar.kicker === "Architect" ? (
                   <Still src="/media/layers.jpg" alt="The layers of the target architecture" />
                 ) : (
@@ -320,12 +311,7 @@ function Home() {
               </p>
             </div>
             <div>
-              <Reel
-                src="/media/floor.mp4"
-                poster="/media/floor.jpg"
-                label="The real company, one continuous flow"
-                caption="The real floor the model stands for. One person walks the whole flow."
-              />
+              <EnterpriseModel mode="today" />
               <h3 className="mt-8 text-lg font-medium">Agent governance</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 Intelligent execution. Defined boundaries. An agent can be authorized to retrieve an order status without being authorized to change a commercial price. A document-processing agent can prepare a file for review without making the final approval decision.

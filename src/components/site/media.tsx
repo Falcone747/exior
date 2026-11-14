@@ -16,31 +16,3 @@ export function Still({ src, alt }: { src: string; alt: string }) {
     />
   );
 }
-
-export function Reel({
-  src,
-  poster,
-  label,
-  caption,
-}: {
-  src: string;
-  poster: string;
-  label: string;
-  caption: string;
-}) {
-  return (
-    <figure>
-      <video
-        className="aspect-video w-full rounded-2xl border border-line object-cover"
-        src={src}
-        poster={poster}
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-label={label}
-      />
-      <figcaption className="mt-3 text-sm text-muted">{caption}</figcaption>
-    </figure>
-  );
-}
