@@ -56,8 +56,8 @@ function Home() {
             <p className="mt-3 text-xs text-faint">Business analysis · Target architecture · Prioritized roadmap · EXIOR Space</p>
           </div>
           <figure>
-            <div className="overflow-hidden rounded-2xl border border-line bg-black">
-              <img src="/visuals/process.jpg" alt="Current process: quote leaves before capacity is known. Target process: capacity signal, then a human sets price and date." className="w-full object-contain" />
+            <div className="overflow-hidden rounded-2xl border border-line bg-white">
+              <img src="/visuals/schema-before-after.jpg" alt="Current process versus target process. The quote waits on capacity. A person sets price and date." className="w-full object-contain" />
             </div>
             <p className="mt-2 text-xs text-faint">Meridian — Illustrative Example. Production is the 11-day constraint.</p>
           </figure>
@@ -71,8 +71,8 @@ function Home() {
               A new platform affects how people work. A new automation changes a process. An AI agent relies on data, permissions, and decisions that may not be ready. When these changes happen independently, complexity grows faster than the business becomes stronger.
             </p>
             <p className="mt-3 text-sm">The advantage comes from designing how everything works together.</p>
-            <figure className="mt-8 overflow-hidden rounded-2xl border border-line bg-black">
-              <img src="/visuals/process.jpg" alt="Schema of the same process before and after. Left, the quote leaves and the capacity signal arrives late. Right, capacity informs the quote and a person sets price and date." className="w-full object-contain" />
+            <figure className="mt-8 overflow-hidden rounded-2xl border border-line bg-white">
+              <img src="/visuals/schema-process.jpg" alt="Inputs, process and outputs. Capacity is checked before the quote. A person sets price and date." className="w-full object-contain" />
             </figure>
             <div className="mt-6 flex gap-2 md:hidden">
               <button type="button" onClick={() => setSide("current")} className={side === "current" ? "rounded-full border border-accent-fill px-3 py-1 text-sm" : "rounded-full border border-line px-3 py-1 text-sm text-muted"}>Current</button>
@@ -126,7 +126,7 @@ function Home() {
               <Link to="/method" className="mt-4 inline-flex text-sm">Explore How It Works</Link>
             </div>
             <div className="rounded-2xl border border-line bg-bg-2 p-6">
-              <img src="/visuals/layers-schema.jpg" alt="Six layers of the target architecture: organization, processes, data, systems, AI agents, security." className="w-full rounded-xl object-contain" />
+              <img src="/visuals/schema-tools.jpg" alt="Where each system sits around EXIOR Space: CRM, ERP, warehouse, ledger, quote agent, human approver." className="w-full rounded-xl bg-white object-contain" />
               <p className="mt-3 text-xs text-faint">0{layer + 1} · Meridian — Illustrative Example</p>
               <h3 className="mt-2 text-2xl">{L.name}</h3>
               <p className="mt-4 text-lg">{L.line}</p>
@@ -142,8 +142,8 @@ function Home() {
             <p className="text-[11px] uppercase tracking-[0.18em] text-muted">YOUR EXIOR SPACE</p>
             <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">See the entire transformation. Understand every decision.</h2>
             <p className="mt-5 max-w-2xl text-muted">Your EXIOR Space brings the enterprise map, target architecture, implementation priorities and open decisions together.</p>
-            <figure className="mt-8 overflow-hidden rounded-2xl border border-line bg-black">
-              <img src="/visuals/roadmap-schema.jpg" alt="Five decisions in order: Foundation, Connect, Govern, Pilot with a human gate, Scale as prospective." className="w-full object-contain" />
+            <figure className="mt-8 overflow-hidden rounded-2xl border border-line bg-white">
+              <img src="/visuals/schema-agent.jpg" alt="Quote draft agent: reader, drafter, human approver. May read. Draft only. May not set price or release a shipment." className="w-full object-contain" />
             </figure>
             <div className="mt-8">
               <SpaceStage />
