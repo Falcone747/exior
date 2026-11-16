@@ -55,10 +55,19 @@ function Home() {
             </div>
             <p className="mt-3 text-xs text-faint">Business analysis · Target architecture · Prioritized roadmap · EXIOR Space</p>
           </div>
-          <div>
-            <p className="mb-2 text-xs text-faint">Meridian — Illustrative Example</p>
-            <SpaceStage compact />
-          </div>
+          <figure>
+            <div className="overflow-hidden rounded-2xl border border-line bg-black">
+              <img src="/visuals/chain.jpg" alt="Model of one company, six stations in a line. The factory station is the only one marked." className="aspect-[16/10] w-full object-cover" />
+              <figcaption className="grid grid-cols-3 border-t border-line sm:grid-cols-6">
+                {["Demand", "Quote", "Capacity", "Production", "Ship", "Cash"].map((step) => (
+                  <span key={step} className={step === "Production" ? "border border-accent-fill px-2 py-3 text-center text-[11px]" : "px-2 py-3 text-center text-[11px] text-muted"}>
+                    {step}
+                  </span>
+                ))}
+              </figcaption>
+            </div>
+            <p className="mt-2 text-xs text-faint">Meridian — Illustrative Example. Production is the 11-day constraint.</p>
+          </figure>
         </section>
 
         <section className="border-y border-line">
@@ -69,6 +78,13 @@ function Home() {
               A new platform affects how people work. A new automation changes a process. An AI agent relies on data, permissions, and decisions that may not be ready. When these changes happen independently, complexity grows faster than the business becomes stronger.
             </p>
             <p className="mt-3 text-sm">The advantage comes from designing how everything works together.</p>
+            <figure className="mt-8 overflow-hidden rounded-2xl border border-line bg-black">
+              <img src="/visuals/split.jpg" alt="The same company twice. Left, stations pulled apart. Right, one line and one person at the approval desk." className="aspect-[16/9] w-full object-cover" />
+              <figcaption className="grid grid-cols-2 border-t border-line text-sm">
+                <span className="px-4 py-3 text-muted">Current — stations apart, the signal arrives late</span>
+                <span className="border-l border-accent-fill px-4 py-3">Target — one line, a person still approves</span>
+              </figcaption>
+            </figure>
             <div className="mt-6 flex gap-2 md:hidden">
               <button type="button" onClick={() => setSide("current")} className={side === "current" ? "rounded-full border border-accent-fill px-3 py-1 text-sm" : "rounded-full border border-line px-3 py-1 text-sm text-muted"}>Current</button>
               <button type="button" onClick={() => setSide("target")} className={side === "target" ? "rounded-full border border-accent-fill px-3 py-1 text-sm" : "rounded-full border border-line px-3 py-1 text-sm text-muted"}>Target</button>
@@ -121,7 +137,8 @@ function Home() {
               <Link to="/method" className="mt-4 inline-flex text-sm">Explore How It Works</Link>
             </div>
             <div className="rounded-2xl border border-line bg-bg-2 p-6">
-              <p className="text-xs text-faint">0{layer + 1} · Meridian — Illustrative Example</p>
+              <img src="/visuals/layers.jpg" alt="A building cut open into six floors: organization, process, data, systems, one agent desk, and a locked floor." className="aspect-[16/10] w-full rounded-xl object-cover" />
+              <p className="mt-3 text-xs text-faint">0{layer + 1} · Meridian — Illustrative Example</p>
               <h3 className="mt-2 text-2xl">{L.name}</h3>
               <p className="mt-4 text-lg">{L.line}</p>
               <p className="mt-3 text-muted">{L.detail}</p>
@@ -136,6 +153,13 @@ function Home() {
             <p className="text-[11px] uppercase tracking-[0.18em] text-muted">YOUR EXIOR SPACE</p>
             <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">See the entire transformation. Understand every decision.</h2>
             <p className="mt-5 max-w-2xl text-muted">Your EXIOR Space brings the enterprise map, target architecture, implementation priorities and open decisions together.</p>
+            <figure className="mt-8 overflow-hidden rounded-2xl border border-line bg-black">
+              <img src="/visuals/harness.jpg" alt="A desk split in two. On the left the agent reads documents and a gauge. On the right a person has the pen." className="aspect-[16/9] w-full object-cover" />
+              <figcaption className="grid border-t border-line text-sm sm:grid-cols-2">
+                <span className="px-4 py-3 text-muted">Agent — read status, capacity, stock. Draft only.</span>
+                <span className="border-t border-accent-fill px-4 py-3 sm:border-l sm:border-t-0">Human — price, lead time, shipment.</span>
+              </figcaption>
+            </figure>
             <div className="mt-8">
               <SpaceStage />
             </div>
