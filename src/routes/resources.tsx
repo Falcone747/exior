@@ -58,10 +58,13 @@ function Resources() {
   return (
     <Shell>
       <main>
-        <section className="mx-auto max-w-6xl px-5 py-16 md:py-24">
-          <p className="text-[11px] uppercase tracking-[0.18em] text-muted">RESOURCES</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-medium tracking-[-0.04em] md:text-6xl">Enterprise transformation demands a wider perspective.</h1>
-          <p className="mt-5 max-w-2xl text-lg text-muted">Economic research, architecture methods, AI standards and security frameworks inform the plan. None of them replace the analysis of your business.</p>
+        <section className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-24">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.18em] text-muted">RESOURCES</p>
+            <h1 className="mt-4 text-4xl font-medium tracking-[-0.04em] md:text-6xl">Enterprise transformation demands a wider perspective.</h1>
+            <p className="mt-5 max-w-2xl text-lg text-muted">Economic research, architecture methods, AI standards and security frameworks inform the plan. None of them replace the analysis of your business.</p>
+          </div>
+          <img src="/visuals/case-direction.jpg" alt="" className="aspect-[4/3] w-full rounded-3xl object-cover" />
         </section>
 
         <section className="border-y border-line">

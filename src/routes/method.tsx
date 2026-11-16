@@ -35,23 +35,16 @@ function Method() {
   return (
     <Shell>
       <main>
-        <section className="mx-auto grid max-w-6xl items-end gap-10 px-5 py-16 md:grid-cols-[1.4fr_0.6fr] md:py-24">
+        <section className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-24">
           <div>
             <p className="text-[11px] uppercase tracking-[0.18em] text-muted">THE EXIOR METHOD</p>
             <h1 className="mt-4 text-4xl font-medium tracking-[-0.04em] md:text-6xl">A rigorous method. A blueprint built around your business.</h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
-              The most consequential transformation decisions happen before implementation. EXIOR connects business analysis, organizational design, systems architecture, and AI planning into one structured engagement — so every initiative has a purpose, a dependency, and a defined place in your future enterprise.
+              The most consequential transformation decisions happen before implementation. EXIOR connects business analysis, organizational design, systems architecture, and AI planning into one structured engagement.
             </p>
-            <p className="mt-4 text-sm">An actual business dossier. An integrated target architecture. A prioritized execution roadmap.</p>
-            <Link to="/offre" className="mt-6 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">Get My Transformation Plan — $499</Link>
-            <p className="mt-3 text-xs text-faint">Delivered in 14 days after your complete dossier is received.</p>
+            <Link to="/offre" className="mt-6 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm font-medium text-white">Get My Transformation Plan — $499</Link>
           </div>
-          <ol className="divide-y divide-line border-y border-line text-sm">
-            <li className="py-4">1 · Dossier</li>
-            <li className="py-4">2 · Map the break</li>
-            <li className="py-4">3 · Specify the agent boundary</li>
-            <li className="py-4">4 · Sequence the decisions</li>
-          </ol>
+          <img src="/visuals/laptop.jpg" alt="The plan, opened" className="aspect-[4/3] w-full rounded-3xl object-cover" />
         </section>
 
         <section className="border-y border-line">

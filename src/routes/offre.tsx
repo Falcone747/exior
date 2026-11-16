@@ -157,18 +157,15 @@ function Offre() {
   return (
     <Shell>
       <main>
-        <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-          <Kicker>EXIOR TRANSFORMATION PLAN</Kicker>
-          <h1 className="mt-4 max-w-3xl text-4xl font-medium tracking-[-0.03em] md:text-6xl">
-            Your next enterprise. Designed in 14 days.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-            A personalized transformation plan. $499, once. Delivered in 14 days after the complete dossier. Technical deployment is separate.
-          </p>
-          <p className="mt-6 text-sm">The plan is designed. The systems are not deployed for $499.</p>
-          <a href="#profile" className="mt-6 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
-            Get My Transformation Plan — $499
-          </a>
+        <section className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-20">
+          <div>
+            <Kicker>EXIOR TRANSFORMATION PLAN</Kicker>
+            <h1 className="mt-4 text-4xl font-medium tracking-[-0.03em] md:text-6xl">Your next enterprise. Designed in 14 days.</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">A personalized transformation plan. $499, once. Delivered in 14 days after the complete dossier. Technical deployment is separate.</p>
+            <p className="mt-6 text-sm">The plan is designed. The systems are not deployed for $499.</p>
+            <a href="#profile" className="mt-6 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm font-medium text-white">Get My Transformation Plan — $499</a>
+          </div>
+          <img src="/visuals/hero-exec.jpg" alt="" className="aspect-[4/3] w-full rounded-3xl object-cover" />
         </section>
 
         <section className="border-t border-line">
