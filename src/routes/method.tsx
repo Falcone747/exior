@@ -77,7 +77,7 @@ function Method() {
             <h2 className="mt-3 text-3xl font-medium tracking-[-0.03em] md:text-4xl">Find the constraints hiding between functions.</h2>
             <p className="mt-5 max-w-2xl text-muted">A report can describe a department. The plan has to show where the promise breaks. On Meridian, the quote leaves Sales before Planning has a capacity signal. Production is an 11-day constraint. Stock is not one number.</p>
             <p className="mt-3 text-xs text-faint">Meridian — Illustrative Example</p>
-            <img src="/visuals/chain.jpg" alt="Six stations of Meridian. The factory station is the constraint." className="mt-6 aspect-[16/9] w-full rounded-2xl border border-line object-cover" />
+            <img src="/visuals/process.jpg" alt="Current process versus target process. The quote waits on capacity. A person sets price and date." className="mt-6 w-full rounded-2xl border border-line object-contain" />
             <div className="mt-8"><SpaceStage initial="map" /></div>
           </div>
         </section>
@@ -88,11 +88,7 @@ function Method() {
             <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.03em] md:text-4xl">Specify the agent before anyone connects it.</h2>
             <p className="mt-5 max-w-2xl text-muted">This is why the plan is not a generated report. The quote agent has a name, a read list, a stop, and a person who still sets the price.</p>
             <figure className="mt-8 overflow-hidden rounded-2xl border border-line bg-black">
-              <img src="/visuals/harness.jpg" alt="The agent side reads. The human side holds the pen." className="aspect-[16/9] w-full object-cover" />
-              <figcaption className="grid text-sm sm:grid-cols-2">
-                <span className="px-4 py-3 text-muted">Reads. Drafts. Cannot commit.</span>
-                <span className="border-t border-accent-fill px-4 py-3 sm:border-l sm:border-t-0">A person sets price, date and shipment.</span>
-              </figcaption>
+              <img src="/visuals/harness-schema.jpg" alt="Quote draft agent: reader, drafter, human approver. May read. Draft only. May not set price or release a shipment." className="w-full object-contain" />
             </figure>
             <div className="mt-8"><QuoteHarness /></div>
           </div>
@@ -103,6 +99,7 @@ function Method() {
             <p className="text-[11px] uppercase tracking-[0.18em] text-muted">ORDER OF DECISIONS</p>
             <h2 className="mt-3 text-3xl font-medium tracking-[-0.03em] md:text-4xl">The order of decisions changes the outcome.</h2>
             <p className="mt-5 max-w-2xl text-muted">Foundation, then the capacity signal, then controls, then a pilot with a human gate. Scale is prospective. It is not a delivered result.</p>
+            <img src="/visuals/roadmap-schema.jpg" alt="Foundation, Connect, Govern, Pilot with a human gate, Scale as prospective." className="mt-8 w-full rounded-2xl border border-line object-contain" />
             <div className="mt-8"><SpaceStage initial="roadmap" /></div>
           </div>
         </section>
