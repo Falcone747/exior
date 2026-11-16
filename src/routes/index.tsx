@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Shell } from "@/components/site/chrome";
 import { QuoteHarness, SpaceStage } from "@/components/site/visuals";
+import { FlowBoard } from "@/components/site/flows";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -125,9 +126,9 @@ function Home() {
               <p className="mt-5 text-sm">Know what stays. What connects. What changes first.</p>
               <Link to="/method" className="mt-4 inline-flex text-sm">Explore How It Works</Link>
             </div>
-            <div className="rounded-2xl border border-line bg-bg-2 p-6">
-              <img src="/visuals/schema-tools.jpg" alt="Where each system sits around EXIOR Space: CRM, ERP, warehouse, ledger, quote agent, human approver." className="w-full rounded-xl bg-white object-contain" />
-              <p className="mt-3 text-xs text-faint">0{layer + 1} · Meridian — Illustrative Example</p>
+            <div className="rounded-2xl border border-line bg-bg-2 p-4 md:p-6">
+              <FlowBoard />
+              <p className="mt-4 text-xs text-faint">0{layer + 1} · Meridian — Illustrative Example</p>
               <h3 className="mt-2 text-2xl">{L.name}</h3>
               <p className="mt-4 text-lg">{L.line}</p>
               <p className="mt-3 text-muted">{L.detail}</p>

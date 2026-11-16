@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Shell } from "@/components/site/chrome";
 import { QuoteHarness, SpaceStage, Timeline } from "@/components/site/visuals";
+import { FlowBoard } from "@/components/site/flows";
 
 export const Route = createFileRoute("/method")({
   head: () => ({
@@ -78,6 +79,7 @@ function Method() {
             <p className="mt-5 max-w-2xl text-muted">A report can describe a department. The plan has to show where the promise breaks. On Meridian, the quote leaves Sales before Planning has a capacity signal. Production is an 11-day constraint. Stock is not one number.</p>
             <p className="mt-3 text-xs text-faint">Meridian — Illustrative Example</p>
             <img src="/visuals/schema-before-after.jpg" alt="Current process versus target process. The quote waits on capacity. A person sets price and date." className="mt-6 w-full rounded-2xl border border-line bg-white object-contain" />
+            <div className="mt-8"><FlowBoard /></div>
             <div className="mt-8"><SpaceStage initial="map" /></div>
           </div>
         </section>
