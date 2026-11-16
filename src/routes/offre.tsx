@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { Shell, Kicker } from "@/components/site/chrome";
 import { FaqList } from "@/components/site/ui";
-import { Still } from "@/components/site/media";
 
 export const Route = createFileRoute("/offre")({
   head: () => ({
@@ -166,13 +165,10 @@ function Offre() {
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
             A personalized transformation plan. $499, once. Delivered in 14 days after the complete dossier. Technical deployment is separate.
           </p>
-          <p className="mt-6 text-sm text-muted">$499 · One-time payment</p>
+          <p className="mt-6 text-sm">The plan is designed. The systems are not deployed for $499.</p>
           <a href="#profile" className="mt-6 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
-            Get Your Transformation Plan
+            Get My Transformation Plan — $499
           </a>
-          <div className="mt-10 max-w-4xl">
-            <Still src="/media/model.jpg" alt="The company as it is modeled on day one" />
-          </div>
         </section>
 
         <section className="border-t border-line">
@@ -246,8 +242,9 @@ function Offre() {
               Your EXIOR Blueprint defines the target architecture and implementation sequence. You decide which initiatives to execute, when to begin, and who will deliver them. Technical development, system integration, data migration, and ongoing operation are available through separate engagements.
             </p>
             <a href="#profile" className="mt-8 inline-flex rounded-full bg-accent-fill px-5 py-3 text-sm text-accent-ink">
-              Get Your Transformation Plan — $499
+              Get My Transformation Plan — $499
             </a>
+            <p className="mt-4 text-sm">The plan is designed. The systems are not deployed for $499.</p>
           </div>
         </section>
 

@@ -12,8 +12,6 @@ const TABS = [
   { id: "layers", label: "Architecture" },
   { id: "roadmap", label: "Roadmap" },
   { id: "decisions", label: "Decisions" },
-  { id: "systems", label: "Systems" },
-  { id: "agents", label: "Agents" },
 ] as const;
 
 type Tab = (typeof TABS)[number]["id"];
@@ -105,18 +103,6 @@ const WAVES = [
   { id: "scale", name: "Scale", text: "Expand only after the process is observed. Prospective. Not a delivered outcome.", gate: "Process validated", risk: "Scaling an unobserved pilot." },
 ] as const;
 
-const ALLOWED = [
-  ["Read order status", "CRM, read"],
-  ["Reconcile inputs", "Order, stock, capacity"],
-  ["Draft a quote", "Price list, requested date"],
-] as const;
-
-const HUMAN = [
-  ["Set the price", "Commercial"],
-  ["Promise a lead time", "Planning"],
-  ["Release the shipment", "Warehouse"],
-] as const;
-
 const OBJECTS = [
   { name: "Customer", owner: "Commercial", system: "CRM", state: "Defined" },
   { name: "Order", owner: "Planning", system: "ERP", state: "Split" },
@@ -160,7 +146,44 @@ const DECISIONS = [
   },
 ] as const;
 
-export function SpaceStage({ initial = "map" as Tab }: { initial?: Tab }) {
+export const HARNESS = [
+  ["Name", "Quote draft"],
+  ["Objective", "Prepare a quote from the order, the price list and the capacity signal"],
+  ["May read", "CRM order status, ERP capacity, warehouse stock, price list"],
+  ["May write", "A draft only"],
+  ["May not", "Change price, commit a lead time, release a shipment, create a purchase"],
+  ["Tools", "CRM read, ERP capacity read, stock read. No write tools"],
+  ["Context", "Named sources: order, capacity, stock, price. Not the whole company"],
+  ["Skill", "Draft a commercial quote in the house format. Stop if capacity is missing"],
+  ["Check", "A person compares draft, price and date before anything is sent"],
+  ["Stop", "Missing capacity, conflicting stock, price exception, or any write attempt"],
+  ["Log", "What was read, what was drafted, who approved"],
+] as const;
+
+export function QuoteHarness({ compact = false }: { compact?: boolean }) {
+  const rows = compact ? HARNESS.filter(([k]) => ["May read", "May write", "May not", "Stop", "Check"].includes(k)) : HARNESS;
+  return (
+    <div>
+      <p className="text-sm">Agents sit on named business objects. They do not sit on the company.</p>
+      <p className="mt-1 text-xs text-faint">Meridian — Illustrative Example · Specified in the blueprint. Not deployed for $499.</p>
+      <dl className="mt-4 divide-y divide-line rounded-xl border border-line text-sm">
+        {rows.map(([k, v]) => (
+          <div key={k} className="grid gap-1 px-4 py-3 sm:grid-cols-[8rem_1fr]">
+            <dt className="text-xs text-faint">{k}</dt>
+            <dd>{v}</dd>
+          </div>
+        ))}
+      </dl>
+      <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-3">
+        <li className="rounded-xl border border-line p-3"><p className="text-xs text-faint">Reader</p><p className="mt-1">Status and capacity</p></li>
+        <li className="rounded-xl border border-line p-3"><p className="text-xs text-faint">Drafter</p><p className="mt-1">Quote text</p></li>
+        <li className="rounded-xl border border-accent-fill p-3"><p className="text-xs text-faint">Human approver</p><p className="mt-1">Price, lead time, shipment</p></li>
+      </ul>
+    </div>
+  );
+}
+
+export function SpaceStage({ initial = "map" as Tab, compact = false }: { initial?: Tab; compact?: boolean }) {
   const [tab, setTab] = useState<Tab>(initial);
   const [mode, setMode] = useState<"current" | "target">("current");
 
@@ -183,30 +206,39 @@ export function SpaceStage({ initial = "map" as Tab }: { initial?: Tab }) {
           ))}
         </div>
       </div>
-      <div className="grid min-h-[32rem] md:grid-cols-[12rem_1fr]">
-        <nav className="flex gap-1 overflow-x-auto border-b border-line p-2 md:flex-col md:border-b-0 md:border-r md:p-3" aria-label="EXIOR Space">
-          {TABS.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => setTab(item.id)}
-              className={
-                tab === item.id
-                  ? "shrink-0 rounded-lg border border-accent-fill/50 px-3 py-2 text-left text-sm text-fg"
-                  : "shrink-0 rounded-lg border border-transparent px-3 py-2 text-left text-sm text-muted hover:text-fg"
-              }
-            >
-              {item.label}
-            </button>
-          ))}
-        </nav>
-        <div className="p-4 md:p-5">
-          {tab === "map" ? <MapView mode={mode} /> : null}
-          {tab === "layers" ? <LayersView mode={mode} /> : null}
-          {tab === "roadmap" ? <RoadmapView /> : null}
-          {tab === "decisions" ? <DecisionsView /> : null}
-          {tab === "systems" ? <SystemsView /> : null}
-          {tab === "agents" ? <AgentsView /> : null}
+      <div className={compact ? "p-4" : "grid min-h-[28rem] md:grid-cols-[12rem_1fr]"}>
+        {compact ? null : (
+          <nav className="flex gap-1 overflow-x-auto border-b border-line p-2 md:flex-col md:border-b-0 md:border-r md:p-3" aria-label="EXIOR Space" role="tablist">
+            {TABS.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                role="tab"
+                aria-selected={tab === item.id}
+                onClick={() => setTab(item.id)}
+                onKeyDown={(e) => {
+                  if (e.key !== "ArrowRight" && e.key !== "ArrowLeft" && e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+                  e.preventDefault();
+                  const i = TABS.findIndex((t) => t.id === tab);
+                  const dir = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : -1;
+                  setTab(TABS[(i + dir + TABS.length) % TABS.length].id);
+                }}
+                className={
+                  tab === item.id
+                    ? "shrink-0 rounded-lg border border-accent-fill px-3 py-2 text-left text-sm text-fg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fg"
+                    : "shrink-0 rounded-lg border border-transparent px-3 py-2 text-left text-sm text-muted hover:text-fg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fg"
+                }
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+        )}
+        <div className={compact ? "" : "p-4 md:p-5"} role="tabpanel">
+          {compact || tab === "map" ? <MapView mode={mode} /> : null}
+          {!compact && tab === "layers" ? <LayersView mode={mode} /> : null}
+          {!compact && tab === "roadmap" ? <RoadmapView /> : null}
+          {!compact && tab === "decisions" ? <DecisionsView /> : null}
         </div>
       </div>
       <p className="border-t border-line px-4 py-2 text-xs text-faint">Sample output · Meridian is an illustrative company, not a client.</p>
@@ -227,14 +259,16 @@ function MapView({ mode }: { mode: "current" | "target" }) {
               type="button"
               onClick={() => setOpen(n.id)}
               className={
-                n.id === open
-                  ? "w-full rounded-xl border border-accent-fill/60 p-3 text-left"
-                  : "w-full rounded-xl border border-line p-3 text-left hover:border-line"
+                "constraint" in n && n.constraint
+                  ? "w-full rounded-xl border border-accent-fill p-3 text-left"
+                  : n.id === open
+                    ? "w-full rounded-xl border border-fg/30 p-3 text-left"
+                    : "w-full rounded-xl border border-line p-3 text-left"
               }
             >
               <p className="text-sm font-medium">{n.name}</p>
               <p className="mt-1 text-xs text-muted">{n.owner}</p>
-              <p className="mt-2 text-xs text-faint">{mode === "current" ? n.status : "Connected"}</p>
+              <p className="mt-2 text-xs text-faint">{mode === "current" ? n.status : "Proposed"}</p>
             </button>
           </li>
         ))}
@@ -275,6 +309,19 @@ function LayersView({ mode }: { mode: "current" | "target" }) {
       <div className="mt-4 rounded-xl border border-line p-4 text-sm">
         <p>{layer.text}</p>
         <p className="mt-3 text-muted">{mode === "current" ? layer.risk : layer.change}</p>
+        {layer.id === "sys" ? (
+          <ul className="mt-4 divide-y divide-line rounded-xl border border-line">
+            {OBJECTS.map((o) => (
+              <li key={o.name} className="grid grid-cols-2 gap-2 px-3 py-2 sm:grid-cols-4">
+                <span>{o.name}</span>
+                <span className="text-muted">{o.owner}</span>
+                <span className="text-muted">{o.system}</span>
+                <span className="text-xs text-faint">{o.state}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        {layer.id === "agent" ? <div className="mt-4"><QuoteHarness /></div> : null}
       </div>
     </div>
   );
@@ -286,7 +333,7 @@ function RoadmapView() {
       <p className="text-xs text-faint">Prospective roadmap · not a guaranteed operating outcome</p>
       <ol className="mt-4 space-y-2">
         {WAVES.map((w, i) => (
-          <li key={w.id} className="rounded-xl border border-line p-3">
+          <li key={w.id} className={w.id === "pilot" ? "rounded-xl border border-accent-fill p-3" : "rounded-xl border border-line p-3"}>
             <div className="flex items-baseline justify-between gap-3">
               <p className="text-sm font-medium"><span className="mr-2 text-xs text-faint">0{i + 1}</span>{w.name}</p>
               <p className="text-xs text-faint">Gate · {w.gate}</p>
@@ -321,45 +368,7 @@ function DecisionsView() {
           <div><dt className="text-xs text-faint">Next</dt><dd>{d.next}</dd></div>
         </dl>
       </div>
-    </div>
-  );
-}
-
-function SystemsView() {
-  return (
-    <div>
-      <p className="text-xs text-faint">Existing systems kept · one owner per object</p>
-      <ul className="mt-4 divide-y divide-line rounded-xl border border-line">
-        {OBJECTS.map((o) => (
-          <li key={o.name} className="grid grid-cols-2 gap-2 px-4 py-3 text-sm sm:grid-cols-4">
-            <span className="font-medium">{o.name}</span>
-            <span className="text-muted">{o.owner}</span>
-            <span className="text-muted">{o.system}</span>
-            <span className="text-xs text-faint">{o.state}</span>
-          </li>
-        ))}
-      </ul>
-      <p className="mt-3 text-xs text-muted">Proposed: CRM reads ERP capacity. Restricted: an agent may not write price or release a shipment.</p>
-    </div>
-  );
-}
-
-function AgentsView() {
-  return (
-    <div className="grid gap-3 md:grid-cols-2">
-      <div className="rounded-xl border border-line p-4">
-        <p className="text-sm font-medium">Agent can</p>
-        <ul className="mt-3 space-y-2 text-sm text-muted">
-          {ALLOWED.map(([a, b]) => <li key={a}>{a} · {b}</li>)}
-        </ul>
-      </div>
-      <div className="rounded-xl border border-accent-fill/50 p-4">
-        <p className="text-sm font-medium">Human approves</p>
-        <ul className="mt-3 space-y-2 text-sm text-muted">
-          {HUMAN.map(([a, b]) => <li key={a}>{a} · {b}</li>)}
-        </ul>
-      </div>
-      <p className="md:col-span-2 text-xs text-faint">Stop condition: any price change or shipment release ends the agent turn. This is a specification, not a deployed runtime.</p>
+      <div className="mt-4"><QuoteHarness compact /></div>
     </div>
   );
 }
